@@ -1,38 +1,52 @@
-.App {
-  text-align: center;
+/* App.css */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #1f1f1f; /* Dark gray background color */
+  color: #fff; /* Text color */
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.app {
   display: flex;
   flex-direction: column;
   align-items: center;
+  min-height: 100vh;
+}
+
+header,
+footer {
+  background-color: #333;
+  color: #fff;
+  padding: 1rem;
+  text-align: center;
+  width: 100%;
+}
+
+main {
+  flex: 1;
+  display: flex;
+  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.circle-svg {
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  width: 200px; /* Adjust the size of the circle as needed */
+  height: 200px; /* Adjust the size of the circle as needed */
+  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.5), transparent 70%); /* Create a radial gradient for the eclipse effect */
+  transition: background-color 0.3s ease; /* Add a transition for smooth color change */
+  cursor: pointer;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.circle-svg:hover {
+  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.5), transparent 70%, rgba(0, 255, 0, 0.5)); /* Change the gradient to emphasize greenish hue at the sides */
+  animation: solarFlare 2s infinite alternate; /* Apply an animation for the diffusing solar flare effect */
 }
+
+@keyframes solarFlare {
+  0% { box-shadow: 0 0 5px 5px rgba(255, 255, 255, 0.5); }
+  100% { box-shadow: 0 0 20px 20px rgba(255, 255, 255, 0.5); }
+}
+
