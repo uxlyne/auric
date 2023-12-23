@@ -51,24 +51,24 @@ const App = () => {
 
   return (
     <div className="app">
-      <header>
-        <h1>Auric Emotional Awareness</h1>
-      </header>
-      <main>
-        <svg
-          className="circle-svg"
-          width="200"
-          height="200"
-          onClick={handleCircleClick}
-        >
-          <circle cx="100" cy="100" r="80" fill={flareColor} />
-        </svg>
-        <div className="transcript">{transcript}</div>
-      </main>
-      <footer>
-        <p>© 2023 Auric Emotional Awareness</p>
-      </footer>
-    </div>
+    <header>
+      <h1>Auric Emotional Awareness</h1>
+    </header>
+    <main className="main-container">
+      <svg
+        className="circle-svg"
+        width="200"
+        height="200"
+        onClick={handleCircleClick}
+      >
+        <circle cx="100" cy="100" r="80" fill={flareColor} />
+      </svg>
+      <div className="transcript">{transcript}</div>
+    </main>
+    <footer>
+      <p>© 2023 Auric Emotional Awareness</p>
+    </footer>
+  </div>
   );
 };
 
