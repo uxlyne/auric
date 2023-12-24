@@ -20,18 +20,14 @@ const App = () => {
 
     recognitionRef.current.lang = 'en-US';
     recognitionRef.current.continuous = true;
-    recognitionRef.current.interimResults = true; // Set to true for interim results
+    recognitionRef.current.interimResults = true;
 
     recognitionRef.current.onresult = (event) => {
-      let interimTranscript = '';
       for (let i = event.resultIndex; i < event.results.length; ++i) {
         if (event.results[i].isFinal) {
           setTranscript(transcript => transcript + event.results[i][0].transcript + ' ');
-        } else {
-          interimTranscript += event.results[i][0].transcript;
         }
       }
-      // You can also update the state with interimTranscript if needed
     };
   }, []);
 
@@ -104,18 +100,18 @@ const App = () => {
         <h1>Auric Emotional Awareness</h1>
       </header>
       <main className="main-container">
-        <svg
-          className="circle-svg"
-          width={200}
-          height={200}
-          onClick={handleCircleClick}
-        >
-          <circle
-            cx={100}
-            cy={100}
-            r={circleSize / 2}
-            fill={flareColor}
-          />
+      <svg
+  className="circle-svg"
+  width={200}
+  height={200}
+  onClick={handleCircleClick}
+>
+  <circle
+    cx={100}
+    cy={100}
+    r={circleSize / 2}
+    fill={flareColor}
+  />
         </svg>
         <div className="transcript">{transcript}</div>
       </main>
@@ -127,6 +123,7 @@ const App = () => {
 };
 
 export default App;
+
 
 
 

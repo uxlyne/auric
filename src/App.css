@@ -40,23 +40,33 @@ main {
 }
 
 .circle-svg {
-  border: 1px solid #ccc;
   border-radius: 50%;
   width: 200px; /* Adjust the size of the circle as needed */
   height: 200px; /* Adjust the size of the circle as needed */
-  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.5), transparent 70%); /* Create a radial gradient for the eclipse effect */
-  transition: background-color 1s ease; /* Adjust the transition duration for smoother color change */
+  background: radial-gradient(circle at center, transparent 70%, rgba(255, 255, 255, 0.3) 80%, rgba(0, 0, 255, 0.5) 90%, rgba(255, 0, 255, 0.5) 100%);
+  transition: background-color 1s ease; /* Smooth transition for color change */
   cursor: pointer;
+  box-shadow: 0 0 10px rgba(0, 0, 255, 0.5), 
+              0 0 20px rgba(255, 0, 255, 0.5), 
+              0 0 30px rgba(0, 255, 255, 0.5); /* Initial glowing effect */
 }
 
 .circle-svg:hover {
-  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.5), transparent 70%, rgba(0, 255, 0, 0.5)); /* Change the gradient to emphasize greenish hue at the sides */
+  background: radial-gradient(circle at center, transparent 70%, rgba(255, 255, 255, 0.3) 70%, rgba(0, 255, 0, 0.5) 80%, rgba(0, 255, 0, 0.5) 90%, rgba(255, 255, 0, 0.5) 100%);
   animation: solarFlare 3s infinite alternate; /* Adjust the animation timing for a slower solar flare effect */
 }
 
 @keyframes solarFlare {
-  0% { box-shadow: 0 0 5px 5px rgba(255, 255, 255, 0.5); }
-  100% { box-shadow: 0 0 20px 20px rgba(255, 255, 255, 0.5); }
+  0% { 
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.5), 
+                0 0 10px rgba(255, 255, 255, 0.5), 
+                0 0 15px rgba(255, 255, 255, 0.5); 
+  }
+  100% { 
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.5), 
+                0 0 30px rgba(255, 255, 255, 0.5), 
+                0 0 40px rgba(255, 255, 255, 0.5); 
+  }
 }
 
 
