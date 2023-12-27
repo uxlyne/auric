@@ -6,11 +6,13 @@ const App = () => {
   const [isRecording, setIsRecording] = useState(false);
   const [transcript, setTranscript] = useState('');
   const [circleSize, setCircleSize] = useState(100); // Initial size of the circle
+  const [textInput, setTextInput] = useState(''); // State to store the text input
+  const [sentimentResult, setSentimentResult] = useState(''); // State to store sentiment result
+
   const audioContext = useRef(new (window.AudioContext || window.webkitAudioContext)());
   const analyser = useRef(audioContext.current.createAnalyser());
   const microphoneStreamRef = useRef(null);
   const recognitionRef = useRef(null);
-  
 
   const testApi = () => {
     fetch('/api/proxy') // This should match the endpoint you set up in your server for the API proxy
@@ -98,13 +100,26 @@ const App = () => {
     setIsRecording(!isRecording);
   };
 
-  useEffect(() => {
-    if (isRecording) {
-      startRecording();
-    } else {
-      stopRecording();
+  const analyzeSentiment = async () => {
+    try {
+      const response = await fetch('/api/sentiment', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ text: textInput }),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        setSentimentResult(data.sentiment);
+      } else {
+        console.error('API request failed:', response.statusText);
+      }
+    } catch (error) {
+      console.error('API request failed:', error);
     }
-  }, [isRecording, startRecording, stopRecording]);
+  };
 
   return (
     <div className="app">
@@ -126,6 +141,14 @@ const App = () => {
           />
         </svg>
         <div className="transcript">{transcript}</div>
+        <input
+          type="text"
+          placeholder="Enter text for sentiment analysis"
+          value={textInput}
+          onChange={(e) => setTextInput(e.target.value)}
+        />
+        <button onClick={analyzeSentiment}>Analyze Sentiment</button>
+        <div className="sentiment-result">{sentimentResult}</div>
         <button onClick={testApi}>Test API</button>
       </main>
       <footer>
@@ -136,6 +159,7 @@ const App = () => {
 };
 
 export default App;
+
 
 
 
