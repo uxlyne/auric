@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import './App.css';
 
 const App = () => {
@@ -10,6 +10,18 @@ const App = () => {
   const analyser = useRef(audioContext.current.createAnalyser());
   const microphoneStreamRef = useRef(null);
   const recognitionRef = useRef(null);
+  
+
+  const testApi = () => {
+    fetch('/api/proxy') // This should match the endpoint you set up in your server for the API proxy
+      .then(response => response.json())
+      .then(data => {
+        console.log('API response:', data);
+      })
+      .catch(error => {
+        console.error('API request failed:', error);
+      });
+  };
 
   useEffect(() => {
     recognitionRef.current = getSpeechRecognition();
@@ -31,15 +43,7 @@ const App = () => {
     };
   }, []);
 
-  useEffect(() => {
-    if (isRecording) {
-      startRecording();
-    } else {
-      stopRecording();
-    }
-  }, [isRecording]);
-
-  const startRecording = () => {
+  const startRecording = useCallback(() => {
     navigator.mediaDevices.getUserMedia({ audio: true })
       .then((stream) => {
         const microphone = audioContext.current.createMediaStreamSource(stream);
@@ -52,17 +56,17 @@ const App = () => {
       .catch((error) => {
         console.error('Error accessing microphone:', error);
       });
-    
-    setFlareColor('rgba(255, 0, 0, 0.5)'); // Change color when recording
-  };
 
-  const stopRecording = () => {
+    setFlareColor('rgba(255, 0, 0, 0.5)'); // Change color when recording
+  }, [/* dependencies of startRecording */]);
+
+  const stopRecording = useCallback(() => {
     if (microphoneStreamRef.current) {
       microphoneStreamRef.current.getTracks().forEach((track) => track.stop());
     }
     recognitionRef.current.stop();
     setFlareColor('rgba(0, 0, 255, 0.5)'); // Change back to default color
-  };
+  }, [/* dependencies of stopRecording */]);
 
   const updateCircleSize = () => {
     const bufferLength = analyser.current.frequencyBinCount;
@@ -94,26 +98,35 @@ const App = () => {
     setIsRecording(!isRecording);
   };
 
+  useEffect(() => {
+    if (isRecording) {
+      startRecording();
+    } else {
+      stopRecording();
+    }
+  }, [isRecording, startRecording, stopRecording]);
+
   return (
     <div className="app">
       <header>
         <h1>Auric Emotional Awareness</h1>
       </header>
       <main className="main-container">
-      <svg
-  className="circle-svg"
-  width={200}
-  height={200}
-  onClick={handleCircleClick}
->
-  <circle
-    cx={100}
-    cy={100}
-    r={circleSize / 2}
-    fill={flareColor}
-  />
+        <svg
+          className="circle-svg"
+          width={200}
+          height={200}
+          onClick={handleCircleClick}
+        >
+          <circle
+            cx={100}
+            cy={100}
+            r={circleSize / 2}
+            fill={flareColor}
+          />
         </svg>
         <div className="transcript">{transcript}</div>
+        <button onClick={testApi}>Test API</button>
       </main>
       <footer>
         <p>© 2023 Auric Emotional Awareness</p>
@@ -123,6 +136,8 @@ const App = () => {
 };
 
 export default App;
+
+
 
 
 
