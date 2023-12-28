@@ -1,21 +1,23 @@
-require('dotenv').config({ path: 'api.env' });
+require('dotenv').config({ path: './src/api.env' });
 
 const express = require('express');
 const axios = require('axios');
-const path = require('path'); // Ensure path is required if you're using it for static files
+const path = require('path');
 const { OAuth2Client } = require('google-auth-library');
 const language = require('@google-cloud/language');
 const app = express();
 const cors = require('cors');
+const http = require('http');
 
-app.use(cors());
+app.use(cors()); // Keep CORS for local development
 
 app.use(express.json());
 
+// Initialize OAuth2Client with your credentials
 const oauth2Client = new OAuth2Client(
   process.env.GOOGLE_CLIENT_ID,
   process.env.GOOGLE_CLIENT_SECRET,
-  'YOUR_REDIRECT_URI' // Replace with your redirect URI
+  'http://localhost:3000/callback'
 );
 
 // Define the API route for sentiment analysis
@@ -47,42 +49,18 @@ app.post('/api/sentiment', async (req, res) => {
   }
 });
 
-// New route for quickstart function
-app.get('/api/quickstart', async (req, res) => {
-  try {
-    const sentimentResult = await quickstart();
-    res.json(sentimentResult);
-  } catch (error) {
-    console.error('Error in quickstart API:', error);
-    res.status(500).send('Internal Server Error');
-  }
-});
-
-// Quickstart function
-async function quickstart() {
-  const client = new language.LanguageServiceClient();
-  const text = 'Hello, world!';
-  const document = {
-    content: text,
-    type: 'PLAIN_TEXT',
-  };
-
-  const [result] = await client.analyzeSentiment({ document: document });
-  const sentiment = result.documentSentiment;
-
-  return {
-    text: text,
-    score: sentiment.score,
-    magnitude: sentiment.magnitude
-  };
-}
-
 // Serve static files from the React build directory
 app.use(express.static(path.join(__dirname, 'build')));
 
 // Handle SPA routing - serve index.html for any unknown routes
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
+
+const server = http.createServer(app);
+server.maxHeadersCount = 2000; // Increase the max header count if necessary
+server.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });
 
 const PORT = process.env.PORT || 3000;

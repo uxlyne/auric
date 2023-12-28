@@ -3,8 +3,8 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #1f1f1f; /* Dark gray background color */
-  color: #fff; /* Text color */
+  background-color: #1f1f1f;
+  color: #fff;
 }
 
 .app {
@@ -31,46 +31,44 @@ main {
   justify-content: center;
 }
 
-.main-container {
+.circle-container {
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 20px; /* Adjust as needed */
+  cursor: pointer;
 }
 
-.circle-svg {
+.circle {
   border-radius: 50%;
   width: 200px; /* Adjust the size of the circle as needed */
   height: 200px; /* Adjust the size of the circle as needed */
   background: radial-gradient(circle at center, transparent 70%, rgba(255, 255, 255, 0.3) 80%, rgba(0, 0, 255, 0.5) 90%, rgba(255, 0, 255, 0.5) 100%);
-  transition: background-color 1s ease; /* Smooth transition for color change */
-  cursor: pointer;
-  box-shadow: 0 0 10px rgba(0, 0, 255, 0.5), 
-              0 0 20px rgba(255, 0, 255, 0.5), 
-              0 0 30px rgba(0, 255, 255, 0.5); /* Initial glowing effect */
+  transition: background-color 0.5s ease;
+  box-shadow: 0 0 10px rgba(0, 0, 255, 0.5),
+              0 0 20px rgba(255, 0, 255, 0.5),
+              0 0 30px rgba(0, 255, 255, 0.5);
+  animation: glow 2s infinite alternate;
 }
 
-.circle-svg:hover {
-  background: radial-gradient(circle at center, transparent 70%, rgba(255, 255, 255, 0.3) 70%, rgba(0, 255, 0, 0.5) 80%, rgba(0, 255, 0, 0.5) 90%, rgba(255, 255, 0, 0.5) 100%);
-  animation: solarFlare 3s infinite alternate; /* Adjust the animation timing for a slower solar flare effect */
+.circle:hover {
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.6),
+              0 0 30px rgba(255, 255, 255, 0.6),
+              0 0 40px rgba(255, 255, 255, 0.6);
 }
 
-@keyframes solarFlare {
-  0% { 
-    box-shadow: 0 0 5px rgba(255, 255, 255, 0.5), 
-                0 0 10px rgba(255, 255, 255, 0.5), 
-                0 0 15px rgba(255, 255, 255, 0.5); 
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5),
+                0 0 20px rgba(255, 255, 255, 0.5),
+                0 0 30px rgba(255, 255, 255, 0.5);
   }
-  100% { 
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.5), 
-                0 0 30px rgba(255, 255, 255, 0.5), 
-                0 0 40px rgba(255, 255, 255, 0.5); 
+  100% {
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.6),
+                0 0 30px rgba(255, 255, 255, 0.6),
+                0 0 40px rgba(255, 255, 255, 0.6);
   }
 }
 
 
-.transcript {
-  margin-top: 30px;
-}
+
 
