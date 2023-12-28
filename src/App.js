@@ -2,12 +2,12 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import './App.css';
 
 const App = () => {
-  const [flareColor, setFlareColor] = useState('rgba(0, 0, 255, 0.5)'); // Default color is blue
+  const [flareColor, setFlareColor] = useState('rgba(0, 0, 255, 0.5)');
   const [isRecording, setIsRecording] = useState(false);
   const [transcript, setTranscript] = useState('');
-  const [circleSize, setCircleSize] = useState(100); // Initial size of the circle
-  const [textInput, setTextInput] = useState(''); // State to store the text input
-  const [sentimentResult, setSentimentResult] = useState(''); // State to store sentiment result
+  const [circleSize, setCircleSize] = useState(100);
+  const [textInput, setTextInput] = useState('');
+  const [sentimentResult, setSentimentResult] = useState('');
 
   const audioContext = useRef(new (window.AudioContext || window.webkitAudioContext)());
   const analyser = useRef(audioContext.current.createAnalyser());
@@ -15,7 +15,7 @@ const App = () => {
   const recognitionRef = useRef(null);
 
   const testApi = () => {
-    fetch('/api/proxy') // This should match the endpoint you set up in your server for the API proxy
+    fetch('/api/proxy')
       .then(response => response.json())
       .then(data => {
         console.log('API response:', data);
@@ -59,16 +59,16 @@ const App = () => {
         console.error('Error accessing microphone:', error);
       });
 
-    setFlareColor('rgba(255, 0, 0, 0.5)'); // Change color when recording
-  }, [/* dependencies of startRecording */]);
+    setFlareColor('rgba(255, 0, 0, 0.5)');
+  }, []);
 
   const stopRecording = useCallback(() => {
     if (microphoneStreamRef.current) {
       microphoneStreamRef.current.getTracks().forEach((track) => track.stop());
     }
     recognitionRef.current.stop();
-    setFlareColor('rgba(0, 0, 255, 0.5)'); // Change back to default color
-  }, [/* dependencies of stopRecording */]);
+    setFlareColor('rgba(0, 0, 255, 0.5)');
+  }, []);
 
   const updateCircleSize = () => {
     const bufferLength = analyser.current.frequencyBinCount;
@@ -76,9 +76,9 @@ const App = () => {
     analyser.current.getByteFrequencyData(dataArray);
     const averageVolume = dataArray.reduce((sum, value) => sum + value, 0) / bufferLength;
 
-    const minSize = 50; // Minimum size of the circle
-    const maxSize = 150; // Maximum size of the circle
-    const scalingFactor = 1.5; // Adjust this factor as needed
+    const minSize = 50;
+    const maxSize = 150;
+    const scalingFactor = 1.5;
 
     const adjustedSize = Math.max(minSize, Math.min(maxSize, averageVolume * scalingFactor));
     setCircleSize(adjustedSize);
@@ -112,7 +112,7 @@ const App = () => {
 
       if (response.ok) {
         const data = await response.json();
-        setSentimentResult(data.sentiment);
+        setSentimentResult(data.documentSentiment.score); // Extract the sentiment score
       } else {
         console.error('API request failed:', response.statusText);
       }
@@ -148,7 +148,9 @@ const App = () => {
           onChange={(e) => setTextInput(e.target.value)}
         />
         <button onClick={analyzeSentiment}>Analyze Sentiment</button>
-        <div className="sentiment-result">{sentimentResult}</div>
+        <div className="sentiment-result">
+          Sentiment Score: {sentimentResult}
+        </div>
         <button onClick={testApi}>Test API</button>
       </main>
       <footer>
@@ -159,6 +161,7 @@ const App = () => {
 };
 
 export default App;
+
 
 
 

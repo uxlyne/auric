@@ -2,15 +2,20 @@ require('dotenv').config({ path: 'api.env' });
 
 const express = require('express');
 const axios = require('axios');
+const path = require('path'); // Ensure path is required if you're using it for static files
 const { OAuth2Client } = require('google-auth-library');
+const language = require('@google-cloud/language');
 const app = express();
+const cors = require('cors');
+
+app.use(cors());
 
 app.use(express.json());
 
 const oauth2Client = new OAuth2Client(
   process.env.GOOGLE_CLIENT_ID,
   process.env.GOOGLE_CLIENT_SECRET,
-  'YOUR_REDIRECT_URI' // Set your redirect URI here
+  'YOUR_REDIRECT_URI' // Replace with your redirect URI
 );
 
 // Define the API route for sentiment analysis
@@ -24,10 +29,10 @@ app.post('/api/sentiment', async (req, res) => {
         content: text,
         type: 'PLAIN_TEXT'
       },
-      encodingType: 'UTF8'  // or use 'NONE' if you don't need sentence offsets
+      encodingType: 'UTF8'
     }, {
       headers: {
-        'Authorization': `Bearer ${process.env.GOOGLE_API_KEY}`  // Use OAuth token if needed
+        'Authorization': `Bearer ${process.env.GOOGLE_API_KEY}`
       }
     });
 
@@ -42,6 +47,36 @@ app.post('/api/sentiment', async (req, res) => {
   }
 });
 
+// New route for quickstart function
+app.get('/api/quickstart', async (req, res) => {
+  try {
+    const sentimentResult = await quickstart();
+    res.json(sentimentResult);
+  } catch (error) {
+    console.error('Error in quickstart API:', error);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
+// Quickstart function
+async function quickstart() {
+  const client = new language.LanguageServiceClient();
+  const text = 'Hello, world!';
+  const document = {
+    content: text,
+    type: 'PLAIN_TEXT',
+  };
+
+  const [result] = await client.analyzeSentiment({ document: document });
+  const sentiment = result.documentSentiment;
+
+  return {
+    text: text,
+    score: sentiment.score,
+    magnitude: sentiment.magnitude
+  };
+}
+
 // Serve static files from the React build directory
 app.use(express.static(path.join(__dirname, 'build')));
 
@@ -54,6 +89,7 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
+
 
 
 
