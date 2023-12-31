@@ -6,7 +6,7 @@ const WelcomePage = () => {
   return (
     <div className="welcome">
       <div className="particles-container">
-        {[...Array(100)].map((_, i) => (
+        {[...Array(200)].map((_, i) => (
           <div key={i} className="dust-particle"></div>
         ))}
       </div>
@@ -27,6 +27,8 @@ const WelcomePage = () => {
 };
 
 export default WelcomePage;
+
+
 
 
 

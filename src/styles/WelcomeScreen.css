@@ -1,7 +1,9 @@
+/* Root Variables */
 :root {
-  --aura-color: rgba(255, 0, 0, 0.5); /* Define the initial aura color */
+  --aura-color: rgba(187, 141, 232, 0.712); /* Define the initial aura color */
 }
 
+/* Welcome Section */
 .welcome {
   position: relative;
   width: 100%;
@@ -16,6 +18,7 @@
   transition: background 0.3s ease-in-out; /* Add a smooth transition effect */
 }
 
+/* Aura Particles Container */
 .particles-container {
   position: absolute;
   width: 100%;
@@ -23,6 +26,7 @@
   pointer-events: none;
 }
 
+/* Aura Particles */
 .particle {
   position: absolute;
   width: 5px;
@@ -42,6 +46,7 @@
   }
 }
 
+/* Eclipse Section */
 .eclipse {
   display: flex;
   flex-direction: column;
@@ -50,7 +55,9 @@
   width: 500px;
   height: 500px;
   border-radius: 50%;
-  box-shadow: 0 0 20px 10px rgba(255, 255, 255, 0.6), 0 0 30px 15px rgba(47, 79, 79, 0.7), 0 0 40px var(--aura-color);
+  box-shadow: 0 0 20px 10px rgba(255, 255, 255, 0.6),
+              0 0 30px 15px rgba(47, 79, 79, 0.7),
+              0 0 40px var(--aura-color);
   position: absolute;
   top: 50%;
   left: 50%;
@@ -59,6 +66,7 @@
   animation: pulse 3s infinite; /* Increased the animation duration to match the text */
 }
 
+/* Aura Title */
 .auraTitleContainer {
   position: absolute;
   top: 43%;
@@ -70,11 +78,15 @@
 .auraTitle {
   font-size: 4.5rem;
   cursor: pointer;
-  text-shadow: 0 0 10px rgba(255, 255, 255, 0.6), 0 0 15px rgba(47, 79, 79, 0.5), 0 0 20px var(--aura-color);
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.4),
+               0 0 5px rgba(47, 79, 79, 0.4),
+               0 0 10px var(--aura-color);
+  color: rgba(7, 6, 6, 0.8); /* Adjust the color values as needed */
   transition: text-shadow 0.3s;
-  animation: breathe 3s infinite;
+  animation: breathe 3s infinite, auraGlow 3s linear infinite;
 }
 
+/* Tagline */
 .tagline {
   position: absolute;
   top: 50%;
@@ -87,6 +99,7 @@
   line-height: 1.4;
 }
 
+/* Start Button */
 .startButton {
   font-size: 1rem;
   padding: 0.8rem 2rem;
@@ -95,8 +108,8 @@
   border-radius: 5px;
   cursor: pointer;
   box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
-  background: transparent;
-  transition: background-color 0.5s;
+  background-color: transparent; /* Remove background color from the default state */
+  transition: background-color 0.3s, transform 0.6s, opacity 0.6s, box-shadow 0.6s;
   text-transform: uppercase;
   font-weight: bold;
   position: absolute;
@@ -107,139 +120,80 @@
 }
 
 .startButton:hover {
-  background: linear-gradient(45deg, #337aff, #ce8b97, #337aff);
-  background-size: 200% 200%;
-  animation: auraGlow 3s linear infinite;
+  background-color: rgba(255, 255, 255, 0.2); /* Add a semi-transparent white background */
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
 }
 
 @keyframes auraGlow {
-    0% {
-      background-position: 0 50%;
-    }
-    100% {
-      background-position: 200% 50%;
-    }
+  0%, 100% {
+    text-shadow: 0 0 5px rgba(255, 128, 128, 0.5),
+                 0 0 15px rgba(128, 255, 128, 0.5),
+                 0 0 20px rgba(128, 128, 255, 0.5);
   }
-  
-
-@keyframes pulse {
-  0% {
-    box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0.6), 0 0 15px 10px rgba(47, 79, 79, 0.5), 0 0 20px var(--aura-color);
+  25% {
+    text-shadow: 0 0 5px rgba(128, 128, 255, 0.5),
+                 0 0 15px rgba(255, 128, 128, 0.5),
+                 0 0 20px rgba(128, 255, 128, 0.5);
   }
   50% {
-    box-shadow: 0 0 20px 10px rgba(255, 255, 255, 0.8), 0 0 30px 15px rgba(47, 79, 79, 0.7), 0 0 40px var(--aura-color);
+    text-shadow: 0 0 5px rgba(128, 255, 128, 0.5),
+                 0 0 15px rgba(128, 128, 255, 0.5),
+                 0 0 20px rgba(255, 128, 128, 0.5);
   }
-  100% {
-    box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0.6), 0 0 15px 10px rgba(47, 79, 79, 0.5), 0 0 20px var(--aura-color);
+  75% {
+    text-shadow: 0 0 5px rgba(255, 128, 128, 0.5),
+                 0 0 15px rgba(128, 255, 128, 0.5),
+                 0 0 20px rgba(128, 128, 255, 0.5);
   }
 }
 
 @keyframes breathe {
   0% {
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.6), 0 0 15px rgba(47, 79, 79, 0.5), 0 0 20px var(--aura-color);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.6),
+                 0 0 15px rgba(47, 79, 79, 0.5),
+                 0 0 20px var(--aura-color);
   }
   50% {
-    text-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 30px rgba(47, 79, 79, 0.7), 0 0 40px var(--aura-color);
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.8),
+                 0 0 30px rgba(47, 79, 79, 0.7),
+                 0 0 40px var(--aura-color);
   }
   100% {
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.6), 0 0 15px rgba(47, 79, 79, 0.5), 0 0 20px var(--aura-color);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.6),
+                 0 0 15px rgba(47, 79, 79, 0.5),
+                 0 0 20px var(--aura-color);
   }
 }
 
-@keyframes glow {
-  0% {
-    opacity: 0.6; /* Initial opacity */
-  }
-  100% {
-    opacity: 1; /* Maximum opacity */
-  }
-}
-
-@keyframes pulseButton {
-  0%, 100% {
-    transform: scale(1);
-    background-color: transparent;
-  }
-  50% {
-    transform: scale(1.1);
-    background-color: var(--aura-color);
-  }
-}
-
-/* Responsive design adjustments */
+/* Mobile View Adjustments */
 @media (max-width: 768px) {
-  .eclipse {
-    width: 300px;
-    height: 300px;
+  /* Move Aura title to the top center of the Eclipse */
+  .auraTitleContainer {
+    top: calc(50% - 140px); /* Adjust the top position to center vertically within the Eclipse */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Center horizontally */
   }
 
+  /* Make Aura title bigger (adjust font-size) */
   .auraTitle {
-    font-size: 3rem;
+    font-size: 4rem; /* Adjust the font size */
   }
 
+  /* Make tagline smaller (adjust font-size) and break into two lines (adjust max-width) */
   .tagline {
-    font-size: 1rem;
+    font-size: .85rem; /* Adjust the font size */
+    line-height: 1.2;
+    max-width: 500px; /* Adjust the maximum width to break into two lines */
+  }
+
+  /* Adjust the size of the eclipse (width and height) */
+  .eclipse {
+    width: 350px; /* Adjust the width */
+    height: 350px; /* Adjust the height */
   }
 }
 
-.dust-container {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  overflow: hidden;
-}
 
-.dust-particle {
-  position: absolute;
-  width: 2px;
-  height: 2px;
-  background-color: rgba(255, 255, 255, 0.6);
-  border-radius: 50%;
-  pointer-events: none;
-  animation: drift 20s linear infinite;
-  opacity: 0; /* Particles start fully transparent */
-}
-
-/* Randomize the initial position of the particles */
-.dust-particle:nth-child(odd) {
-  left: 10%;
-  animation-duration: 22s;
-}
-
-.dust-particle:nth-child(even) {
-  left: 90%;
-  animation-duration: 18s;
-}
-
-/* Larger particles */
-.dust-particle:nth-child(3n) {
-  width: 3px;
-  height: 3px;
-  animation-duration: 25s;
-}
-
-/* Smaller and faster particles */
-.dust-particle:nth-child(4n) {
-  width: 1px;
-  height: 1px;
-  animation-duration: 15s;
-}
-
-/* Define the drift animation */
-@keyframes drift {
-  0% {
-    transform: translateY(0) scale(0);
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.5;
-  }
-  100% {
-    transform: translateY(100vh) scale(1.5);
-    opacity: 0;
-  }
-}
 
 
 
