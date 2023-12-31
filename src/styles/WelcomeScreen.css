@@ -1,9 +1,9 @@
 /* Root Variables */
 :root {
-  --aura-color: rgba(187, 141, 232, 0.712); /* Define the initial aura color */
+  --aura-color: rgba(205, 178, 233, 0.712); /* Define the initial aura color */
 }
 
-/* Welcome Section */
+/* Welcome Screen Base Styles */
 .welcome {
   position: relative;
   width: 100%;
@@ -15,10 +15,10 @@
   align-items: center;
   text-align: center;
   overflow: hidden;
-  transition: background 0.3s ease-in-out; /* Add a smooth transition effect */
+  transition: background 0.3s ease-in-out; /* Smooth transition for background color */
 }
 
-/* Aura Particles Container */
+/* Particles Animation Styles */
 .particles-container {
   position: absolute;
   width: 100%;
@@ -26,8 +26,7 @@
   pointer-events: none;
 }
 
-/* Aura Particles */
-.particle {
+.dust-particle {
   position: absolute;
   width: 5px;
   height: 5px;
@@ -40,18 +39,16 @@
 @keyframes float {
   0%, 100% {
     transform: translateY(0);
+    opacity: 0.8; 
   }
   50% {
     transform: translateY(-20px);
+    opacity: 1;
   }
 }
 
-/* Eclipse Section */
+/* Eclipse and Title Animations */
 .eclipse {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   width: 500px;
   height: 500px;
   border-radius: 50%;
@@ -63,10 +60,9 @@
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 1;
-  animation: pulse 3s infinite; /* Increased the animation duration to match the text */
+  animation: pulse 3s infinite; /* Pulse animation for the eclipse */
 }
 
-/* Aura Title */
 .auraTitleContainer {
   position: absolute;
   top: 43%;
@@ -81,15 +77,15 @@
   text-shadow: 0 0 5px rgba(255, 255, 255, 0.4),
                0 0 5px rgba(47, 79, 79, 0.4),
                0 0 10px var(--aura-color);
-  color: rgba(7, 6, 6, 0.8); /* Adjust the color values as needed */
+  color: rgba(7, 6, 6, 0.8);
   transition: text-shadow 0.3s;
-  animation: breathe 3s infinite, auraGlow 3s linear infinite;
+  animation: breathe 3s infinite, auraGlow 3s linear infinite; /* Text animations for the title */
 }
 
-/* Tagline */
+/* Tagline Styles */
 .tagline {
   position: absolute;
-  top: 50%;
+  top: 52%; /* Adjusted to lower the tagline */
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 2;
@@ -97,9 +93,10 @@
   color: #aaa;
   text-align: center;
   line-height: 1.4;
+  max-width: 80%; /* Maximum width to control the text flow */
 }
 
-/* Start Button */
+/* Button Styles */
 .startButton {
   font-size: 1rem;
   padding: 0.8rem 2rem;
@@ -108,20 +105,47 @@
   border-radius: 5px;
   cursor: pointer;
   box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
-  background-color: transparent; /* Remove background color from the default state */
+  background-color: transparent;
   transition: background-color 0.3s, transform 0.6s, opacity 0.6s, box-shadow 0.6s;
   text-transform: uppercase;
   font-weight: bold;
   position: absolute;
-  top: 60%;
+  top: 65%; /* Lowered the button to provide space for tagline */
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 2;
 }
 
 .startButton:hover {
-  background-color: rgba(255, 255, 255, 0.2); /* Add a semi-transparent white background */
+  background-color: rgba(255, 255, 255, 0.2);
   box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+}
+
+/* Animations for various elements */
+@keyframes pulse {
+  0%, 100% {
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.6),
+                 0 0 15px rgba(47, 79, 79, 0.5),
+                 0 0 20px var(--aura-color);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.8),
+                 0 0 30px rgba(47, 79, 79, 0.7),
+                 0 0 40px var(--aura-color);
+  }
+}
+
+@keyframes breathe {
+  0%, 100% {
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.6),
+                 0 0 15px rgba(47, 79, 79, 0.5),
+                 0 0 20px var(--aura-color);
+  }
+  50% {
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.8),
+                 0 0 30px rgba(47, 79, 79, 0.7),
+                 0 0 40px var(--aura-color);
+  }
 }
 
 @keyframes auraGlow {
@@ -147,49 +171,26 @@
   }
 }
 
-@keyframes breathe {
-  0% {
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.6),
-                 0 0 15px rgba(47, 79, 79, 0.5),
-                 0 0 20px var(--aura-color);
-  }
-  50% {
-    text-shadow: 0 0 20px rgba(255, 255, 255, 0.8),
-                 0 0 30px rgba(47, 79, 79, 0.7),
-                 0 0 40px var(--aura-color);
-  }
-  100% {
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.6),
-                 0 0 15px rgba(47, 79, 79, 0.5),
-                 0 0 20px var(--aura-color);
-  }
-}
-
-/* Mobile View Adjustments */
+/* Media Queries for Responsiveness */
 @media (max-width: 768px) {
-  /* Move Aura title to the top center of the Eclipse */
-  .auraTitleContainer {
-    top: calc(50% - 140px); /* Adjust the top position to center vertically within the Eclipse */
-    left: 50%; /* Center horizontally */
-    transform: translateX(-50%); /* Center horizontally */
-  }
-
-  /* Make Aura title bigger (adjust font-size) */
   .auraTitle {
-    font-size: 4rem; /* Adjust the font size */
+    font-size: 4rem; /* Adjust font size for smaller screens */
   }
 
-  /* Make tagline smaller (adjust font-size) and break into two lines (adjust max-width) */
   .tagline {
-    font-size: .85rem; /* Adjust the font size */
-    line-height: 1.2;
-    max-width: 500px; /* Adjust the maximum width to break into two lines */
+    font-size: .85rem; /* Smaller font size for tagline on smaller screens */
+    max-width: 300px; /* Smaller width for the tagline */
+    top: 50%; /* Adjust position to fit the layout */
   }
 
-  /* Adjust the size of the eclipse (width and height) */
   .eclipse {
-    width: 350px; /* Adjust the width */
-    height: 350px; /* Adjust the height */
+    width: 390px; /* Smaller eclipse for mobile devices */
+    height: 390px;
+  }
+
+  .startButton {
+    padding: 0.6rem 1.5rem; /* Smaller padding for the button */
+    top: 60%; /* Adjust button position to prevent overlap */
   }
 }
 
