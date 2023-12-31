@@ -1,40 +1,37 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const Header = () => {
+  // Initialize hover state using the useState hook
+  const [hover, setHover] = useState(false);
+
+  // Inline styles for the header components
   const headerStyle = {
-    background: '#333',
-    color: '#fff',
-    padding: '10px 20px 10px 30px', // Added padding-left to create space from the left edge
     display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center', // Center vertically
-    fontFamily: 'Arial, sans-serif', // Change the font family
+    justifyContent: 'space-between', // Places items on the far ends
+    alignItems: 'center', // Centers items vertically
+    background: 'var(--color-background)', // Uses global CSS variable
+    color: 'var(--color-text)', // Uses global CSS variable
+    padding: '1rem',
+    boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)'
   };
 
   const titleStyle = {
-    margin: '0',
+    fontWeight: 'bold',
     fontSize: '1.5rem',
-    fontWeight: 'bold', // Make the title bold
+    margin: '0',
   };
 
   const linkStyle = {
+    color: 'var(--color-primary)',
     textDecoration: 'none',
-    color: '#61dafb',
-    fontSize: '1rem',
-    padding: '5px 10px',
+    // Apply a different color when hovered
+    backgroundColor: hover ? 'var(--color-primary)' : 'transparent',
+    color: hover ? 'var(--color-background)' : 'var(--color-primary)',
+    padding: '0.5rem 1rem',
     borderRadius: '5px',
-    transition: 'background-color 0.2s',
+    transition: 'background-color 0.2s, color 0.2s',
   };
-
-  const linkHoverStyle = {
-    ...linkStyle,
-    backgroundColor: '#61dafb',
-    color: '#333',
-  };
-
-  // Using state to handle hover style
-  const [hover, setHover] = React.useState(false);
 
   return (
     <header style={headerStyle}>
@@ -42,8 +39,12 @@ const Header = () => {
         <h2 style={titleStyle}>Auric Emotional Awareness</h2>
       </div>
       <div>
-        {/* Add the Log Out button */}
-        <Link to="/welcome" style={linkStyle}>
+        <Link
+          to="/welcome"
+          style={linkStyle}
+          onMouseEnter={() => setHover(true)}
+          onMouseLeave={() => setHover(false)}
+        >
           Log Out
         </Link>
       </div>
@@ -52,6 +53,8 @@ const Header = () => {
 };
 
 export default Header;
+
+
 
 
 

@@ -6,9 +6,14 @@ const WelcomePage = () => {
   return (
     <div className="welcome">
       <div className="particles-container">
-        {/* Generate 200 div elements for the particle effect */}
         {[...Array(200)].map((_, i) => (
-          <div key={i} className="dust-particle"></div>
+          <div
+            key={i}
+            className="dust-particle"
+            style={{
+              '--random-delay': Math.random(), // Assign a random delay
+            }}
+          ></div>
         ))}
       </div>
       <div className="eclipse"></div>
@@ -16,7 +21,7 @@ const WelcomePage = () => {
         <h1 className="auraTitle">AURA</h1>
       </div>
       <p className="tagline">
-        Your Emotional Palette.<br />
+        Your <span className="emotional-gradient">Emotional</span> Palette.<br />
         Discover the colors of your voice.
       </p>
       <Link to="/">
@@ -27,6 +32,8 @@ const WelcomePage = () => {
 };
 
 export default WelcomePage;
+
+
 
 
 

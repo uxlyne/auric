@@ -2,35 +2,35 @@ import React from 'react';
 import Aura from '../components/Aura';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import VoiceRecorder from '../components/VoiceRecorder'; // Import the VoiceRecorder component
-import TextInput from '../components/TextInput'; // Import the TextInput component
-import TextAnalysis from '../components/TextAnalysis'; // Import the TextAnalysis component
+import TextInput from '../components/TextInput';
+import TextAnalysis from '../components/TextAnalysis';
 import '../styles/Main.css';
 
 const Main = () => {
   return (
     <div>
-      <Header />
-      <div className="home-page">
-        <div className="aura-section">
+    <Header />
+    <div className="main-container">
+      <div className="content">
+        <div className="left-panel">
           <Aura />
         </div>
-        <div className="text-section">
-          <h1>Your Emotional Palette</h1>
-          <p>Discover the colors of your voice and improve your emotional awareness.</p>
+        <div className="right-panel">
+          <TextInput />
+          <TextAnalysis />
         </div>
       </div>
-      <div className="app-content">
-        <VoiceRecorder />
-        <TextInput />
-        <TextAnalysis />
-      </div>
-      <Footer />
+    </div>
+    <Footer />
     </div>
   );
 }
 
 export default Main;
+
+
+
+
 
 
 

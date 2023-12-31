@@ -1,56 +1,82 @@
-/* Assuming you've already defined color variables in :root as earlier */
 :root {
-  --text-main: #E8E8E8;
-  --text-secondary: #aaa;
-  --text-glow: rgba(187, 141, 232, 0.7);
-  --background-main: #1F1F1F;
-  --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* A more modern font */
+  --header-footer-height: 60px; /* Adjust this value based on your header and footer height */
+  --content-spacing: 20px;
+  --header-height: 60px;
+  --footer-height: 60px;
 }
 
-.home-page {
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow: hidden; /* This prevents any overflow from causing scrolling */
+}
+
+.header {
+  height: var(--header-height);
+  /* Your header styles */
+}
+
+.main-container {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centers content vertically if there's extra space */
+  overflow: hidden; /* Prevents the main content from causing scrolling */
+}
+
+.content {
+  display: flex;
+  width: 100%;
+  flex-grow: 1; /* Allows content to grow to available space */
+  justify-content: space-around;
+  align-items: center;
+  align-items: flex-start; /* Align children to the top */
+  margin-top: 5%; /* Adjust or remove the top margin */
+  padding: 20px;
+}
+
+.footer {
+  height: var(--footer-height);
+  /* Your footer styles */
+}
+
+.left-panel {
+  flex: 2; /* 2 parts width out of 3 total */
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
-  background: var(--background-main);
-  color: var(--text-main);
-  font-family: var(--font-main);
-  overflow: hidden; /* Hide overflow for particle effects */
+  padding: var(--content-spacing); /* Inner spacing */
 }
-  
-  .aura-section {
-    flex: 1;
-    max-width: 50%;
-    /* Align the Aura component to the left */
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
+
+.right-panel {
+  flex: 1; /* 1 part width out of 3 total */
+  display: flex;
+  flex-direction: column; /* Aligns children (TextInput, TextAnalysis) vertically */
+  justify-content: flex-start; /* Aligns children to the start of the flex-direction */
+  padding: var(--content-spacing); /* Inner spacing */
+  height: 100%; /* Make sure the right panel takes up all the vertical space */
+}
+
+.text-input, .text-analysis {
+  width: 100%; /* Fill the width */
+  margin-bottom: var(--content-spacing); /* Add space between elements */
+  /* Add other styles as necessary */
+}
+
+
+/* Responsive design adjustments */
+@media (max-width: 768px) {
+  .content {
+    flex-direction: column;
   }
-  
-  .text-section h1,
-  .text-section p {
-    font-weight: 300; /* Use lighter font weights for a sleek look */
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); /* Soft shadow for depth */
+
+  .left-panel,
+  .right-panel {
+    width: 100%;
+    padding: var(--content-spacing);
   }
-  
-  
-  /* Responsive Design Adjustments */
-  @media (max-width: 768px) {
-    .home-page {
-      flex-direction: column;
-      padding: 1rem;
-    }
-  
-    .aura-section,
-    .text-section {
-      max-width: 100%;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-    }
-  
-    .text-section {
-      padding: 0;
-      margin-top: 2rem;
-    }
-  }
+}
+
+
+

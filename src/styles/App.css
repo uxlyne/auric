@@ -1,81 +1,133 @@
-/* App.css - Global styles */
+/* Global styles */
 
-/* Color Variables */
+/* Color Palette */
 :root {
-  /* Dark Mode */
-  --background-dark: #1F1F1F; /* Eerie Black for main background */
-  --text-dark: #E8E8E8;       /* Platinum for primary text and icons */
-  --accent-dark-blue: #5865F2; /* Neon Blue for accents */
-  --accent-dark-pink: #FF7597; /* Rose Pompadour for accents */
-  --accent-dark-mint: #4ECCA3; /* Mint for accents */
-  --accent-dark-teal: #00B5AD; /* Vibrant Teal for additional accents */
+  --color-primary: #5865F2; /* Primary accent color */
+  --color-secondary: #FF7597; /* Secondary accent color */
+  --color-background: #1F1F1F; /* Main background color */
+  --color-foreground: #E8E8E8; /* Main foreground color */
+  --color-text: #E8E8E8; /* Primary text color */
+  --color-text-secondary: #A0A0A0; /* Secondary text color */
+  --color-error: #FF4757; /* Error color for warnings or errors */
+  --color-success: #4ECCA3; /* Success color for confirmations */
+  --color-info: #00B5AD; /* Information color for messages and tooltips */
 
-  /* Light Mode */
-  --background-light: #FFFFFF; /* White for main background */
-  --text-light: #333333;       /* Jet for primary text and icons */
-  --accent-light-blue: #A7BBEC; /* Powder Blue for accents */
-  --accent-light-pink: #F7A8B8; /* Cherry Blossom Pink for accents */
-  --accent-light-green: #A4DEB9; /* Celadon for accents */
-  --accent-light-orange: #F3D1AE; /* Light Orange for additional accents */
+  --header-footer-height: 60px; /* Adjust this value based on your header and footer height */
+  --content-spacing: 20px;
+  --header-height: 60px; /* Replace with your header's actual height */
+  --footer-height: 60px;
 }
 
+/* Typography */
 body {
   margin: 0;
   padding: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: var(--background-dark); /* Default to dark mode */
-  color: var(--text-dark);
-  width: 100%;
-  height: 100%;
+  background-color: var(--color-background);
+  color: var(--color-text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Remove overflow-x: hidden; to allow horizontal scrolling if needed */
 
-.app {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between; /* Adjust to push header and footer to top and bottom */
-  min-height: 100vh;
-  color: var(--text-dark);
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--color-primary);
+  margin-top: 0;
 }
 
-header,
-footer {
-  background-color: #333;
-  color: #fff;
-  padding: 1rem;
-  text-align: center;
-  width: 100%;
-}
-
-main {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+p {
+  margin: 0;
 }
 
 a {
-  color: var(--text-dark);
+  color: var(--color-primary);
   text-decoration: none;
 }
 
+a:hover {
+  text-decoration: underline;
+}
+
+/* Layout */
+.container {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Utility Classes */
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+/* Flexbox Utilities */
+.flex {
+  display: flex;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.space-between {
+  justify-content: space-between;
+}
+
+/* Button Reset */
 button {
-  background: transparent;
-  color: var(--text-dark);
-  border: 1px solid var(--accent-dark-teal);
+  background: none;
+  border: 1px solid var(--color-primary);
+  color: var(--color-text);
   padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
-  box-shadow: 0 0 15px var(--accent-dark-teal);
-  transition: background-color 0.3s, box-shadow 0.3s;
+  font-family: inherit;
+  font-size: inherit;
 }
 
 button:hover {
-  background-color: var(--accent-dark-teal);
-  box-shadow: 0 0 20px var(--accent-dark-teal);
+  background-color: var(--color-primary);
+  color: var(--color-background);
 }
+
+/* Box Sizing Reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Clearfix Hack */
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+/* Responsive Images */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
 
 /* Responsive design adjustments */
 @media (max-width: 768px) {

@@ -1,18 +1,20 @@
-import React from 'react';
-
 const Aura = () => {
+  // Define the size of the Aura as a percentage of the viewport width
+  const auraSize = '40vw'; // 30% of the viewport width
+
   const style = {
-    container: {
+    auracontainer: {
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
       justifyContent: 'center',
-      height: '100vh',
       position: 'relative',
     },
     eclipse: {
-      width: '300px',
-      height: '300px',
+      width: auraSize,
+      height: auraSize,
+      maxWidth: '500px', // You can set a max size to ensure it doesn't get too big
+      maxHeight: '500px',
       background: '#1E1E1E',
       borderRadius: '50%',
       boxShadow: 'inset 0 0 20px rgba(0, 0, 0, 0.8)',
@@ -43,27 +45,22 @@ const Aura = () => {
       left: '50%',
       transform: 'translate(-50%, -50%)',
     },
-    text: {
-      zIndex: 2,
-      color: '#ffffff',
-      // Add more text styles here
-    }
   };
 
   return (
-    <>
-      <div style={style.container}>
-        <div style={style.eclipse}>
-          <div style={style.glow}></div>
-          <div style={style.concentric}></div>
-          {/* Add more concentric divs here if needed */}
-        </div>
+    <div style={style.auracontainer}>
+      <div style={style.eclipse}>
+        <div style={style.glow}></div>
+        <div style={style.concentric}></div>
+        {/* Add more concentric divs here if needed */}
       </div>
-    </>
+    </div>
   );
 };
 
 export default Aura;
+
+
 
 
 
