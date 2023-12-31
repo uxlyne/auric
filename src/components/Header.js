@@ -42,13 +42,9 @@ const Header = () => {
         <h2 style={titleStyle}>Auric Emotional Awareness</h2>
       </div>
       <div>
-        <Link
-          to="/profile"
-          style={hover ? linkHoverStyle : linkStyle}
-          onMouseEnter={() => setHover(true)}
-          onMouseLeave={() => setHover(false)}
-        >
-          Profile
+        {/* Add the Log Out button */}
+        <Link to="/welcome" style={linkStyle}>
+          Log Out
         </Link>
       </div>
     </header>
@@ -56,6 +52,7 @@ const Header = () => {
 };
 
 export default Header;
+
 
 
 

@@ -27,14 +27,15 @@ body {
   color: var(--text-dark);
   width: 100%;
   height: 100%;
-  overflow-x: hidden; /* Hide horizontal scroll */
 }
+
+/* Remove overflow-x: hidden; to allow horizontal scrolling if needed */
 
 .app {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between; /* Adjust to push header and footer to top and bottom */
   min-height: 100vh;
   color: var(--text-dark);
 }
@@ -92,6 +93,7 @@ button:hover {
     padding: 8px 16px;
   }
 }
+
 
 
 
