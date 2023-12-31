@@ -1,6 +1,5 @@
 /* App.css */
 
-/* Reset some default styles */
 body {
   margin: 0;
   padding: 0;
@@ -56,6 +55,62 @@ button {
 @media (max-width: 768px) {
   /* Add responsive styles here */
 }
+
+/* App.css or a global CSS file */
+
+:root {
+  /* Color Palette for Dark Mode */
+  --background-dark: #1F1F1F; /* Eerie Black for main background */
+  --text-dark: #E8E8E8;       /* Platinum for primary text and icons */
+  --accent-dark-blue: #5865F2; /* Neon Blue for accents */
+  --accent-dark-pink: #FF7597; /* Rose Pompadour for accents */
+  --accent-dark-mint: #4ECCA3; /* Mint for accents */
+  --accent-dark-teal: #00B5AD; /* Vibrant Teal for additional accents */
+
+  /* Color Palette for Light Mode */
+  --background-light: #FFFFFF; /* White for main background */
+  --text-light: #333333;       /* Jet for primary text and icons */
+  --accent-light-blue: #A7BBEC; /* Powder Blue for accents */
+  --accent-light-pink: #F7A8B8; /* Cherry Blossom Pink for accents */
+  --accent-light-green: #A4DEB9; /* Celadon for accents */
+  --accent-light-orange: #F3D1AE; /* Light Orange for additional accents */
+}
+
+/* You can then use these variables throughout your CSS */
+body.dark-mode {
+  background-color: var(--background-dark);
+  color: var(--text-dark);
+  /* Other dark mode styles */
+}
+
+body.light-mode {
+  background-color: var(--background-light);
+  color: var(--text-light);
+  /* Other light mode styles */
+}
+
+/* Example of using accents for a button */
+button {
+  background-color: var(--accent-dark-teal); /* Vibrant teal background */
+  color: var(--text-dark); /* Text color */
+  /* Rest of the button styling */
+}
+
+button:hover {
+  background-color: var(--accent-dark-blue); /* Neon blue background on hover */
+  /* Hover state styling */
+}
+
+/* Reset some default styles */
+
+body, html {
+  margin: 0;
+  padding: 0;
+  width: 100%;         /* Prevent any horizontal scrolling */
+  height: 100%;        /* Ensures the html and body tags cover the full height */
+  overflow-x: hidden;  /* Hide horizontal scroll */
+}
+
 
 
 
