@@ -16,8 +16,8 @@ const WelcomePage = () => {
         <h1 className="auraTitle">AURA</h1>
       </div>
       <p className="tagline">
-        Translating emotions into colors<br />
-        for clear communication.
+        Your Emotional Palette.<br />
+        Discover the colors of your voice.
       </p>
       <Link to="/">
         <button className="startButton">Continue</button>

@@ -11,81 +11,60 @@ const Aura = () => {
       position: 'relative',
     },
     eclipse: {
-      width: '500px',
-      height: '500px',
+      width: '300px',
+      height: '300px',
+      background: '#1E1E1E',
       borderRadius: '50%',
-      boxShadow: `
-        0 0 10px 5px rgba(255, 255, 255, 0.6),
-        0 0 15px 10px rgba(47, 79, 79, 0.5),
-        0 0 20px 15px rgba(224, 255, 255, 0.3)
-      `,
-      zIndex: 1,
-      animation: 'pulse 2s infinite',
+      boxShadow: 'inset 0 0 20px rgba(0, 0, 0, 0.8)',
+      position: 'relative',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    glow: {
+      width: '100%',
+      height: '100%',
+      borderRadius: '50%',
+      background: 'radial-gradient(closest-side, rgba(0, 174, 255, 0.3) 60%, transparent)',
+      boxShadow: '0 0 30px rgba(0, 174, 255, 0.7)',
+      position: 'absolute',
+      top: '50%',
+      left: '50%',
+      transform: 'translate(-50%, -50%)',
+    },
+    concentric: {
+      width: '90%',
+      height: '90%',
+      borderRadius: '50%',
+      border: '1px solid rgba(0, 174, 255, 0.6)',
+      boxShadow: '0 0 15px rgba(0, 174, 255, 0.5)',
+      position: 'absolute',
+      top: '50%',
+      left: '50%',
+      transform: 'translate(-50%, -50%)',
     },
     text: {
-      position: 'absolute',
       zIndex: 2,
-    },
-    '@keyframes pulse': {
-      '0%': {
-        boxShadow: `
-          0 0 10px 5px rgba(255, 255, 255, 0.6),
-          0 0 15px 10px rgba(47, 79, 79, 0.5),
-          0 0 20px 15px rgba(224, 255, 255, 0.3)
-        `,
-      },
-      '50%': {
-        boxShadow: `
-          0 0 20px 10px rgba(255, 255, 255, 0.8),
-          0 0 30px 15px rgba(47, 79, 79, 0.7),
-          0 0 40px 20px rgba(224, 255, 255, 0.5)
-        `,
-      },
-      '100%': {
-        boxShadow: `
-          0 0 10px 5px rgba(255, 255, 255, 0.6),
-          0 0 15px 10px rgba(47, 79, 79, 0.5),
-          0 0 20px 15px rgba(224, 255, 255, 0.3)
-        `,
-      },
-    },
+      color: '#ffffff',
+      // Add more text styles here
+    }
   };
 
   return (
     <>
-      <style>
-        {`
-          @keyframes pulse {
-            0% {
-              box-shadow: 
-                0 0 10px 5px rgba(255, 255, 255, 0.6),
-                0 0 15px 10px rgba(47, 79, 79, 0.5),
-                0 0 20px 15px rgba(224, 255, 255, 0.3);
-            }
-            50% {
-              box-shadow: 
-                0 0 20px 10px rgba(255, 255, 255, 0.8),
-                0 0 30px 15px rgba(47, 79, 79, 0.7),
-                0 0 40px 20px rgba(224, 255, 255, 0.5);
-            }
-            100% {
-              box-shadow: 
-                0 0 10px 5px rgba(255, 255, 255, 0.6),
-                0 0 15px 10px rgba(47, 79, 79, 0.5),
-                0 0 20px 15px rgba(224, 255, 255, 0.3);
-            }
-          }
-        `}
-      </style>
       <div style={style.container}>
-        <div style={style.eclipse}></div>
-        <h1 style={style.text} className="glowing-text">Aura</h1>
+        <div style={style.eclipse}>
+          <div style={style.glow}></div>
+          <div style={style.concentric}></div>
+          {/* Add more concentric divs here if needed */}
+        </div>
       </div>
     </>
   );
 };
 
 export default Aura;
+
 
 
 

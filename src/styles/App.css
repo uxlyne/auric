@@ -1,20 +1,42 @@
-/* App.css */
+/* App.css - Global styles */
+
+/* Color Variables */
+:root {
+  /* Dark Mode */
+  --background-dark: #1F1F1F; /* Eerie Black for main background */
+  --text-dark: #E8E8E8;       /* Platinum for primary text and icons */
+  --accent-dark-blue: #5865F2; /* Neon Blue for accents */
+  --accent-dark-pink: #FF7597; /* Rose Pompadour for accents */
+  --accent-dark-mint: #4ECCA3; /* Mint for accents */
+  --accent-dark-teal: #00B5AD; /* Vibrant Teal for additional accents */
+
+  /* Light Mode */
+  --background-light: #FFFFFF; /* White for main background */
+  --text-light: #333333;       /* Jet for primary text and icons */
+  --accent-light-blue: #A7BBEC; /* Powder Blue for accents */
+  --accent-light-pink: #F7A8B8; /* Cherry Blossom Pink for accents */
+  --accent-light-green: #A4DEB9; /* Celadon for accents */
+  --accent-light-orange: #F3D1AE; /* Light Orange for additional accents */
+}
 
 body {
   margin: 0;
   padding: 0;
-  font-family: Arial, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--background-dark); /* Default to dark mode */
+  color: var(--text-dark);
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden; /* Hide horizontal scroll */
 }
 
-/* Define global styles for the app */
 .app {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  background-color: #1f1f1f;
-  color: #fff;
+  color: var(--text-dark);
 }
 
 header,
@@ -33,82 +55,42 @@ main {
   justify-content: center;
 }
 
-/* Define styles for links */
 a {
-  color: #fff;
+  color: var(--text-dark);
   text-decoration: none;
 }
 
-/* Style for a button */
 button {
-  background-color: #007bff;
-  color: #fff;
-  border: none;
+  background: transparent;
+  color: var(--text-dark);
+  border: 1px solid var(--accent-dark-teal);
   padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
-}
-
-/* Add more global styles as needed */
-
-/* Media queries for responsive design */
-@media (max-width: 768px) {
-  /* Add responsive styles here */
-}
-
-/* App.css or a global CSS file */
-
-:root {
-  /* Color Palette for Dark Mode */
-  --background-dark: #1F1F1F; /* Eerie Black for main background */
-  --text-dark: #E8E8E8;       /* Platinum for primary text and icons */
-  --accent-dark-blue: #5865F2; /* Neon Blue for accents */
-  --accent-dark-pink: #FF7597; /* Rose Pompadour for accents */
-  --accent-dark-mint: #4ECCA3; /* Mint for accents */
-  --accent-dark-teal: #00B5AD; /* Vibrant Teal for additional accents */
-
-  /* Color Palette for Light Mode */
-  --background-light: #FFFFFF; /* White for main background */
-  --text-light: #333333;       /* Jet for primary text and icons */
-  --accent-light-blue: #A7BBEC; /* Powder Blue for accents */
-  --accent-light-pink: #F7A8B8; /* Cherry Blossom Pink for accents */
-  --accent-light-green: #A4DEB9; /* Celadon for accents */
-  --accent-light-orange: #F3D1AE; /* Light Orange for additional accents */
-}
-
-/* You can then use these variables throughout your CSS */
-body.dark-mode {
-  background-color: var(--background-dark);
-  color: var(--text-dark);
-  /* Other dark mode styles */
-}
-
-body.light-mode {
-  background-color: var(--background-light);
-  color: var(--text-light);
-  /* Other light mode styles */
-}
-
-/* Example of using accents for a button */
-button {
-  background-color: var(--accent-dark-teal); /* Vibrant teal background */
-  color: var(--text-dark); /* Text color */
-  /* Rest of the button styling */
+  box-shadow: 0 0 15px var(--accent-dark-teal);
+  transition: background-color 0.3s, box-shadow 0.3s;
 }
 
 button:hover {
-  background-color: var(--accent-dark-blue); /* Neon blue background on hover */
-  /* Hover state styling */
+  background-color: var(--accent-dark-teal);
+  box-shadow: 0 0 20px var(--accent-dark-teal);
 }
 
-/* Reset some default styles */
+/* Responsive design adjustments */
+@media (max-width: 768px) {
+  .app,
+  header,
+  footer {
+    padding: 0.5rem;
+  }
 
-body, html {
-  margin: 0;
-  padding: 0;
-  width: 100%;         /* Prevent any horizontal scrolling */
-  height: 100%;        /* Ensures the html and body tags cover the full height */
-  overflow-x: hidden;  /* Hide horizontal scroll */
+  main {
+    padding: 1rem;
+  }
+
+  button {
+    padding: 8px 16px;
+  }
 }
 
 

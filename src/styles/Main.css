@@ -1,0 +1,58 @@
+/* Assuming you've already defined color variables in :root as earlier */
+:root {
+  --text-main: #E8E8E8;
+  --text-secondary: #aaa;
+  --text-glow: rgba(187, 141, 232, 0.7);
+  --background-main: #1F1F1F;
+  --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* A more modern font */
+}
+
+.home-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: var(--background-main);
+  color: var(--text-main);
+  font-family: var(--font-main);
+  overflow: hidden; /* Hide overflow for particle effects */
+}
+  
+  .aura-section {
+    flex: 1;
+    max-width: 50%;
+    /* Align the Aura component to the left */
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+  
+  .text-section h1,
+  .text-section p {
+    font-weight: 300; /* Use lighter font weights for a sleek look */
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); /* Soft shadow for depth */
+  }
+  
+  
+  /* Responsive Design Adjustments */
+  @media (max-width: 768px) {
+    .home-page {
+      flex-direction: column;
+      padding: 1rem;
+    }
+  
+    .aura-section,
+    .text-section {
+      max-width: 100%;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+  
+    .text-section {
+      padding: 0;
+      margin-top: 2rem;
+    }
+  }
+  
+  
