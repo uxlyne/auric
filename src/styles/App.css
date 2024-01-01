@@ -29,15 +29,17 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-
-
 h1, h2, h3, h4, h5, h6 {
   color: var(--color-primary);
   margin-top: 0;
+  font-weight: 300; /* Lighter font for elegance */
 }
 
 p {
+  color: var(--color-text-secondary);
   margin: 0;
+  font-size: 1rem;
+  line-height: 1.6; /* Increased line-height for readability */
 }
 
 a {
@@ -51,7 +53,7 @@ a:hover {
 
 /* Layout */
 .container {
-  max-width: 100%;
+  max-width: 1200px; /* Max width for large screens */
   margin: 0 auto;
   padding: 20px;
 }

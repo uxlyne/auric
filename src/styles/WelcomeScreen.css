@@ -1,3 +1,5 @@
+/* WelcomeScreen.css */
+
 /* Root Variables */
 :root {
   --aura-color: rgba(205, 178, 233, 0.712); /* Define the initial aura color */
@@ -8,61 +10,51 @@
   position: relative;
   width: 100%;
   height: 100vh;
-  background: rgba(18, 18, 18, 0.8); /* Revert back to the original background color */
+  background: radial-gradient(circle at center, #1F1F1F 0%, #000000 100%);
   color: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
   overflow: hidden;
-  transition: background 0.3s ease-in-out; /* Smooth transition for background color */
+  transition: background 0.3s ease-in-out;
 }
 
-/* Particles Animation Styles */
-
-/* Aura Particles Container */
-.particles-container {
+.welcome::before {
+  /* Background Overlay */
+  content: '';
   position: absolute;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0) 50%,
+    rgba(0, 0, 0, 0.1) 100%
+  );
+  z-index: 0;
 }
-
-/* Aura Particles */
-.dust-particle {
-  position: absolute;
-  width: 5px;
-  height: 5px;
-  background-color: rgba(255, 255, 255, 0.8);
-  border-radius: 50%;
-  pointer-events: none;
-  animation: float 10s infinite ease-in-out;
-}
-
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-20px);
-  }
-}
-
 
 /* Eclipse and Title Animations */
 .eclipse {
   width: 500px;
   height: 500px;
   border-radius: 50%;
-  box-shadow: 0 0 20px 10px rgba(255, 255, 255, 0.6),
-              0 0 30px 15px rgba(47, 79, 79, 0.7),
-              0 0 40px var(--aura-color);
+  background-color: rgba(255, 255, 255, 0.016);
+  box-shadow: 
+    0 0 20px 10px rgba(255, 255, 255, 0.6),
+    0 0 30px 15px rgba(47, 79, 79, 0.7),
+    0 0 40px var(--aura-color);
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 1;
-  animation: pulse 3s infinite; /* Pulse animation for the eclipse */
+  z-index: 2;
+  animation: pulse 3s infinite;
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
 }
 
 .auraTitleContainer {
@@ -74,20 +66,23 @@
 }
 
 .auraTitle {
-  font-size: 4.5rem;
+  font-size: 6rem;
   cursor: pointer;
   text-shadow: 0 0 5px rgba(255, 255, 255, 0.4),
                0 0 5px rgba(47, 79, 79, 0.4),
                0 0 10px var(--aura-color);
   color: rgba(7, 6, 6, 0.8);
   transition: text-shadow 0.3s;
-  animation: breathe 3s infinite, auraGlow 3s linear infinite; /* Text animations for the title */
+  animation: breathe 3s infinite, auraGlow 3s linear infinite;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
 }
 
 /* Tagline Styles */
 .tagline {
   position: absolute;
-  top: 52%; /* Adjusted to lower the tagline */
+  top: 52%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 2;
@@ -95,7 +90,7 @@
   color: #aaa;
   text-align: center;
   line-height: 1.4;
-  max-width: 80%; /* Maximum width to control the text flow */
+  max-width: 80%;
 }
 
 /* Button Styles */
@@ -112,7 +107,7 @@
   text-transform: uppercase;
   font-weight: bold;
   position: absolute;
-  top: 65%; /* Lowered the button to provide space for tagline */
+  top: 65%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 2;
@@ -121,62 +116,130 @@
 .startButton:hover {
   background-color: rgba(255, 255, 255, 0.123);
   box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+  color: white;
 }
 
-/* Animations for various elements */
+/* Sparkle Styles */
+.sparkle {
+  position: absolute;
+  border-radius: 50%;
+  background: #fff;
+  width: 2px;
+  height: 2px;
+  opacity: 0; /* Start fully transparent */
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.5); /* Add a glow effect */
+  animation: twinkle 10s infinite ease-in-out, float 20s infinite ease-in-out;
+}
+
+/* Promo Words Styles */
+.promo-words {
+  position: absolute;
+  font-size: 0.85rem;
+  color: rgba(165, 165, 165, 0.75);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  z-index: 3;
+}
+
+.promo-top-left {
+  top: 10px;
+  left: 10px;
+}
+
+.promo-top-right {
+  top: 10px;
+  right: 10px;
+}
+
+.promo-bottom-left {
+  bottom: 10px;
+  left: 10px;
+}
+
+.promo-bottom-right {
+  bottom: 10px;
+  right: 10px;
+}
+
+/* Animation Keyframes */
+@keyframes twinkle {
+  0%, 100% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(1.1);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
 
 @keyframes pulse {
   0%, 100% {
     box-shadow: 
       0 0 8px rgba(255, 255, 255, 0.6),
-      0 0 15px rgba(167, 187, 236, 0.6), /* Powder Blue */
-      0 0 20px rgba(247, 168, 184, 0.6), /* Cherry Blossom Pink */
-      0 0 25px rgba(38, 204, 215, 0.6), /* Celadon */
-      0 0 30px rgba(243, 209, 174, 0.6); /* Light Orange */
+      0 0 15px rgba(167, 187, 236, 0.6), 
+      0 0 20px rgba(247, 168, 184, 0.6), 
+      0 0 25px rgba(38, 204, 215, 0.6), 
+      0 0 30px rgba(243, 209, 174, 0.6); 
   }
   50% {
     box-shadow: 
       0 0 10px rgba(255, 255, 255, 0.7),
-      0 0 18px rgba(167, 187, 236, 0.7), /* Powder Blue */
-      0 0 24px rgba(247, 168, 184, 0.7), /* Cherry Blossom Pink */
-      0 0 30px rgba(22, 144, 219, 0.7), /* Celadon */
-      0 0 35px rgba(243, 209, 174, 0.7); /* Light Orange */
+      0 0 18px rgba(167, 187, 236, 0.7), 
+      0 0 24px rgba(247, 168, 184, 0.7), 
+      0 0 30px rgba(22, 144, 219, 0.7), 
+      0 0 35px rgba(243, 209, 174, 0.7); 
   }
 }
 
 @keyframes breathe {
   0%, 100% {
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.6),
-                 0 0 15px rgba(47, 79, 79, 0.5),
-                 0 0 20px var(--aura-color);
+    text-shadow: 
+      0 0 10px rgba(255, 255, 255, 0.6),
+      0 0 15px rgba(47, 79, 79, 0.5),
+      0 0 20px var(--aura-color);
   }
   50% {
-    text-shadow: 0 0 20px rgba(255, 255, 255, 0.8),
-                 0 0 30px rgba(47, 79, 79, 0.7),
-                 0 0 40px var(--aura-color);
+    text-shadow: 
+      0 0 20px rgba(255, 255, 255, 0.8),
+      0 0 30px rgba(47, 79, 79, 0.7),
+      0 0 40px var(--aura-color);
   }
 }
 
 @keyframes auraGlow {
   0%, 100% {
-    text-shadow: 0 0 5px rgba(255, 128, 128, 0.5),
-                 0 0 15px rgba(128, 255, 128, 0.5),
-                 0 0 20px rgba(128, 128, 255, 0.5);
+    text-shadow: 
+      0 0 5px rgba(255, 128, 128, 0.5),
+      0 0 15px rgba(128, 255, 128, 0.5),
+      0 0 20px rgba(128, 128, 255, 0.5);
   }
   25% {
-    text-shadow: 0 0 5px rgba(128, 128, 255, 0.5),
-                 0 0 15px rgba(255, 128, 128, 0.5),
-                 0 0 20px rgba(128, 255, 128, 0.5);
+    text-shadow: 
+      0 0 5px rgba(128, 128, 255, 0.5),
+      0 0 15px rgba(255, 128, 128, 0.5),
+      0 0 20px rgba(128, 255, 128, 0.5);
   }
   50% {
-    text-shadow: 0 0 5px rgba(128, 255, 128, 0.5),
-                 0 0 15px rgba(128, 128, 255, 0.5),
-                 0 0 20px rgba(255, 128, 128, 0.5);
+    text-shadow: 
+      0 0 5px rgba(128, 255, 128, 0.5),
+      0 0 15px rgba(128, 128, 255, 0.5),
+      0 0 20px rgba(255, 128, 128, 0.5);
   }
   75% {
-    text-shadow: 0 0 5px rgba(255, 128, 128, 0.5),
-                 0 0 15px rgba(128, 255, 128, 0.5),
-                 0 0 20px rgba(128, 128, 255, 0.5);
+    text-shadow: 
+      0 0 5px rgba(255, 128, 128, 0.5),
+      0 0 15px rgba(128, 255, 128, 0.5),
+      0 0 20px rgba(128, 128, 255, 0.5);
   }
 }
 
@@ -185,7 +248,7 @@
   .auraTitle {
     font-size: 4rem; /* Adjust font size for smaller screens */
   }
-
+  
   .tagline {
     font-size: 1rem; /* Smaller font size for tagline on smaller screens */
     max-width: 300px; /* Smaller width for the tagline */
@@ -200,18 +263,65 @@
   .startButton {
     padding: 0.6rem 1.5rem; /* Smaller padding for the button */
     top: 60%; /* Adjust button position to prevent overlap */
-    box-shadow: 0 0 8px rgba(255, 255, 255, 0.668);
   }
 }
 
-.emotional-gradient {
-  background: linear-gradient(45deg, #A7BBEC, #F7A8B8, #A4DEB9, #F3D1AE);
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
-  display: inline;
+/* Aura Particles */
+.dust-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
 }
 
+.dust-particle {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+  pointer-events: none;
+  animation: drift 20s linear infinite;
+  opacity: 0; /* Particles start fully transparent */
+}
 
+/* Randomize the initial position of the particles */
+.dust-particle:nth-child(odd) {
+  left: 25%;
+  animation-duration: 22s;
+}
 
-  
+.dust-particle:nth-child(even) {
+  left: 70%;
+  animation-duration: 18s;
+}
+
+/* Larger particles */
+.dust-particle:nth-child(3n) {
+  width: 3px;
+  height: 3px;
+  animation-duration: 25s;
+}
+
+/* Smaller and faster particles */
+.dust-particle:nth-child(4n) {
+  width: 1px;
+  height: 1px;
+  animation-duration: 15s;
+}
+
+/* Define the drift animation */
+@keyframes drift {
+  0% {
+    transform: translateY(0) scale(0);
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(100vh) scale(1.5);
+    opacity: 0;
+  }
+}
