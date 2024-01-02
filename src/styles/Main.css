@@ -1,5 +1,11 @@
+/* Main Page Styles to match Welcome Screen */
+
 :root {
-  --header-footer-height: 60px; /* Adjust this value based on your header and footer height */
+  /* Color scheme to match the Welcome Screen */
+  --background-color: #0a0a0a; /* Dark background */
+  --text-color: #ffffff; /* Bright text */
+  --accent-color: #4ECCA3; /* Accent color matching the Welcome Screen's palette */
+  --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Consistent font */
   --content-spacing: 20px;
   --header-height: 60px;
   --footer-height: 60px;
@@ -9,19 +15,28 @@
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  background-color: var(--background-color); /* Matching dark background */
+  color: var(--text-color); /* Bright text for contrast */
+  font-family: var(--font-family); /* Consistent font */
   overflow: hidden; /* This prevents any overflow from causing scrolling */
 }
 
-.header {
-  height: var(--header-height);
-  /* Your header styles */
+.header, .footer {
+  /* Styling for header and footer to match the aura theme */
+  background-color: #1F1F1F; /* Darker shade for header and footer */
+  color: #E8E8E8; /* Lighter text color for readability */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
 }
 
 .main-container {
-  flex-grow: 1;
+  flex: 1; 
   display: flex;
   flex-direction: column;
   justify-content: center; /* Centers content vertically if there's extra space */
+  background: radial-gradient(circle at center, #1F1F1F 0%, #000000 100%); /* Radial gradient background */
   overflow: hidden; /* Prevents the main content from causing scrolling */
 }
 
@@ -32,13 +47,7 @@
   justify-content: space-around;
   align-items: center;
   align-items: flex-start; /* Align children to the top */
-  margin-top: 5%; /* Adjust or remove the top margin */
-  padding: 20px;
-}
-
-.footer {
-  height: var(--footer-height);
-  /* Your footer styles */
+  padding: var(--content-spacing);
 }
 
 .left-panel {
@@ -64,6 +73,21 @@
   /* Add other styles as necessary */
 }
 
+/* Adjusting the button styling to match the Welcome Screen */
+button {
+  background-color: var(--accent-color); /* Use the accent color */
+  color: var(--background-color); /* Contrast text color */
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-family: var(--font-family); /* Consistent font */
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: lighten(var(--accent-color), 10%); /* Lighter shade on hover */
+}
 
 /* Responsive design adjustments */
 @media (max-width: 768px) {

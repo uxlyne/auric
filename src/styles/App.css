@@ -2,27 +2,27 @@
 
 /* Color Palette */
 :root {
-  --color-primary: #5865F2; /* Primary accent color */
-  --color-secondary: #FF7597; /* Secondary accent color */
+  --color-primary: #737c9c; /* A muted, sophisticated primary accent color */
+  --color-secondary: #A5ACAF; /* A soft, muted secondary accent color */
   --color-background: #1F1F1F; /* Main background color */
   --color-foreground: #E8E8E8; /* Main foreground color */
-  --color-text: #E8E8E8; /* Primary text color */
+  --color-text: #CACCD1; /* Soft white for primary text, enhancing readability */
   --color-text-secondary: #A0A0A0; /* Secondary text color */
-  --color-error: #FF4757; /* Error color for warnings or errors */
-  --color-success: #4ECCA3; /* Success color for confirmations */
-  --color-info: #00B5AD; /* Information color for messages and tooltips */
-
-  --header-footer-height: 60px; /* Adjust this value based on your header and footer height */
-  --content-spacing: 20px;
-  --header-height: 60px; /* Replace with your header's actual height */
-  --footer-height: 60px;
+  --color-error: #E57373; /* Softer red for warnings or errors */
+  --color-success: #81C784; /* Softer green for confirmations */
+  --color-info: #64B5F6; /* Softer blue for information */
+  
+  --header-footer-height: 60px; /* Header and footer height */
+  --content-spacing: 20px; /* Content spacing */
+  --header-height: 60px; /* Header height */
+  --footer-height: 60px; /* Footer height */
 }
 
 /* Typography */
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Open Sans', Arial, sans-serif; /* A more modern font for elegance */
   background-color: var(--color-background);
   color: var(--color-text);
   -webkit-font-smoothing: antialiased;
@@ -32,119 +32,71 @@ body {
 h1, h2, h3, h4, h5, h6 {
   color: var(--color-primary);
   margin-top: 0;
-  font-weight: 300; /* Lighter font for elegance */
+  font-weight: 100; /* Normal weight for a sophisticated look */
+  font-size: 1.5rem; /* Larger font size for headers */
 }
 
 p {
   color: var(--color-text-secondary);
   margin: 0;
   font-size: 1rem;
-  line-height: 1.6; /* Increased line-height for readability */
+  line-height: 1.6;
 }
 
 a {
-  color: var(--color-primary);
+  color: var(--color-secondary);
   text-decoration: none;
 }
 
 a:hover {
+  color: var(--color-primary);
   text-decoration: underline;
 }
 
 /* Layout */
 .container {
-  max-width: 1200px; /* Max width for large screens */
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 20px;
+  padding: var(--content-spacing);
 }
 
-/* Utility Classes */
-.text-center {
-  text-align: center;
-}
-
-.text-left {
-  text-align: left;
-}
-
-.text-right {
-  text-align: right;
-}
-
-/* Flexbox Utilities */
-.flex {
-  display: flex;
-}
-
-.flex-column {
-  display: flex;
-  flex-direction: column;
-}
-
-.align-center {
-  align-items: center;
-}
-
-.justify-center {
-  justify-content: center;
-}
-
-.space-between {
-  justify-content: space-between;
-}
-
-/* Button Reset */
+/* Button Styling */
 button {
-  background: none;
-  border: 1px solid var(--color-primary);
-  color: var(--color-text);
-  padding: 10px 20px;
-  border-radius: 5px;
+  background-color: var(--color-secondary); /* Muted color for buttons */
+  color: var(--color-background);
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 3px; /* Rounded corners for elegance */
   cursor: pointer;
-  font-family: inherit;
-  font-size: inherit;
+  font-family: 'Open Sans', Arial, sans-serif;
+  font-size: 1rem;
+  transition: all 0.3s ease; /* Smooth transition for hover effects */
 }
 
 button:hover {
-  background-color: var(--color-primary);
-  color: var(--color-background);
+  background-color: var(--color-primary); /* Change to primary on hover */
+  color: var(--color-foreground);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
 }
 
-/* Box Sizing Reset */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-/* Clearfix Hack */
-.clearfix::after {
-  content: "";
-  clear: both;
-  display: table;
-}
-
-/* Responsive Images */
-img {
-  max-width: 100%;
-  height: auto;
-}
-
-
-/* Responsive design adjustments */
+/* Adjustments for Mobile Responsiveness */
 @media (max-width: 768px) {
   .app,
   header,
   footer {
-    padding: 0.5rem;
-  }
-
-  main {
     padding: 1rem;
   }
 
+  .container {
+    padding: 1rem;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-size: 1.5rem; /* Smaller headers for mobile */
+  }
+
   button {
-    padding: 8px 16px;
+    padding: 0.5rem 1rem; /* Smaller buttons for mobile */
   }
 }
 
