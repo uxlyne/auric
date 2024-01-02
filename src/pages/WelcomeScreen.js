@@ -65,11 +65,12 @@ const WelcomePage = () => {
           <h1 className="auraTitle">AURA</h1>
         </div>
 
-        {/* Tagline */}
-        <p className="tagline">
-          Your <span className="emotional-gradient">Emotional</span> Palette.<br />
-          Discover the colors of your voice.
-        </p>
+        {/* Slogan */}
+        <div className="slogan-container">
+          <p className="slogan-top">YOUR EMOTIONAL PALETTE</p>
+          <hr className="slogan-separator" />
+          <p className="slogan-bottom">Discover the color of your voice.</p>
+        </div>
 
         {/* Continue Button */}
         <Link to="/">
