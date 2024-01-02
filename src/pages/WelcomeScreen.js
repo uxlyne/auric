@@ -54,6 +54,9 @@ const WelcomePage = () => {
           ))}
         </div>
 
+        {/* ... */}
+  <div className="auraGlow"></div> {/* New element for testing */}
+        
         {/* Eclipse */}
         <div className="eclipse"></div>
 
