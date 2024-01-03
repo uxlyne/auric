@@ -1,32 +1,28 @@
 /* Main Page Styles to match Welcome Screen */
 :root {
-  --background-color: #0a0a0a; /* Dark base color for deep space effect */
+  --background-color-start: #0d0d0d; /* Slightly lighter start color for deep space effect */
+  --background-color-end: #141414; /* Slightly lighter end color for deep space effect */
   --star-color: #ffffff; /* Color for the stars */
   --star-size-small: 1px; /* Size for distant stars */
   --star-size-large: 2px; /* Size for closer stars */
   --star-animation-duration: 120s; /* Duration for the parallax animation */
+  --text-color: #ffffff; /* Color for text */
+  --font-family: Arial, sans-serif; /* Font family for text */
+  --content-spacing: 20px; /* Spacing between content elements */
+  --button-border-color: #ffffff; /* Border color for buttons */
+  --button-hover-background: rgba(0, 0, 0, 0.6); /* Background color on button hover */
+  --button-hover-border: #ffffff; /* Border color on button hover */
 }
 
 .app {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background-color: var(--background-color);
+  background: linear-gradient(to bottom, var(--background-color-start), var(--background-color-end)); /* Gradient background */
   color: var(--text-color);
   font-family: var(--font-family);
   overflow: hidden;
   position: relative;
-}
-
-
-@keyframes moveStarsFar {
-  from { background-position: 0 0, 50px 50px; }
-  to { background-position: -10000px 5000px, -10050px 5050px; }
-}
-
-@keyframes moveStarsClose {
-  from { background-position: 25px 25px, 75px 75px; }
-  to { background-position: -5000px 2500px, -5075px 2575px; }
 }
 
 .header, .footer {
@@ -54,7 +50,6 @@
   width: 100%;
   flex-grow: 1; /* Allows content to grow to available space */
   justify-content: space-around;
-  align-items: center;
   align-items: flex-start; /* Align children to the top */
   padding: var(--content-spacing);
 }
@@ -74,6 +69,51 @@
   justify-content: flex-start; /* Aligns children to the start of the flex-direction */
   padding: var(--content-spacing); /* Inner spacing */
   height: 100%; /* Make sure the right panel takes up all the vertical space */
+}
+
+/* Define the particle container */
+.particle-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1; /* Place behind other content */
+}
+
+/* Define the particle style */
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  background: var(--star-color); /* Use the star color variable */
+  width: var(--star-size-small); /* Use the small star size variable */
+  height: var(--star-size-small); /* Use the small star size variable */
+  opacity: 0; /* Start fully transparent */
+  animation: moveParticle var(--star-animation-duration) infinite ease-in-out,
+             twinkle 1.5s infinite ease-in-out;
+}
+
+/* Particle movement animation */
+@keyframes moveParticle {
+  0%, 100% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(1.1);
+  }
+}
+
+/* Twinkle animation */
+@keyframes twinkle {
+  0%, 100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.4;
+  }
 }
 
 .text-input, .text-analysis {
