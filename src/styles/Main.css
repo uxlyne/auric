@@ -1,128 +1,72 @@
 /* Main Page Styles to match Welcome Screen */
 :root {
-  --background-color-start: #0d0d0d; /* Slightly lighter start color for deep space effect */
-  --background-color-end: #141414; /* Slightly lighter end color for deep space effect */
-  --star-color: #ffffff; /* Color for the stars */
-  --star-size-small: 1px; /* Size for distant stars */
-  --star-size-large: 2px; /* Size for closer stars */
-  --star-animation-duration: 120s; /* Duration for the parallax animation */
+  --background-color: #000000; /* Base dark color for background */
   --text-color: #ffffff; /* Color for text */
-  --font-family: Arial, sans-serif; /* Font family for text */
-  --content-spacing: 20px; /* Spacing between content elements */
+  --font-family: 'Arial', sans-serif; /* Font family for text */
+  --content-spacing: 50px; /* Spacing between content elements */
   --button-border-color: #ffffff; /* Border color for buttons */
   --button-hover-background: rgba(0, 0, 0, 0.6); /* Background color on button hover */
   --button-hover-border: #ffffff; /* Border color on button hover */
+  --panel-flex-basis: 500px; /* Basis size for panels, adjust as needed */
 }
 
 .app {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background: linear-gradient(to bottom, var(--background-color-start), var(--background-color-end)); /* Gradient background */
+  background-color: var(--background-color); /* Solid background color */
   color: var(--text-color);
   font-family: var(--font-family);
   overflow: hidden;
-  position: relative;
 }
 
 .header, .footer {
-  /* Styling for header and footer to match the aura theme */
-  background-color: var(--background-color);
-  color: var(--text-color);
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 1rem;
+  background-color: var(--background-color); /* Ensures consistency in color */
+  color: var(--text-color);
 }
 
 .main-container {
   flex: 1;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  background: var(--background-color); /* Use the same background color variable */
-  position: relative;
-  overflow: hidden;
+  justify-content: space-around;/* Center the content horizontally */
+  align-items: center;  /* Align the content to the top */
+  background-color: var(--background-color); /* Use the same background color */
+  padding: var(--content-spacing);
 }
 
 .content {
   display: flex;
-  width: 100%;
-  flex-grow: 1; /* Allows content to grow to available space */
-  justify-content: space-around;
-  align-items: flex-start; /* Align children to the top */
-  padding: var(--content-spacing);
+  width: calc(100% - 2 * var(--content-spacing)); /* Adjust width based on content spacing */
+  max-width: 1200px; /* Maximum width of the content area */
+  margin: auto; /* Centers the content area */
 }
 
-.left-panel {
-  flex: 2; /* 2 parts width out of 3 total */
+.left-panel, .right-panel {
+  flex: 0 1 var(--panel-flex-basis); /* Flex basis controls the initial size of the panel */
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
   padding: var(--content-spacing); /* Inner spacing */
+  max-width: var(--panel-flex-basis);
+
 }
 
+/* For the right-panel, you might adjust the flex basis to change its initial size */
 .right-panel {
-  flex: 1; /* 1 part width out of 3 total */
-  display: flex;
-  flex-direction: column; /* Aligns children (TextInput, TextAnalysis) vertically */
-  justify-content: flex-start; /* Aligns children to the start of the flex-direction */
-  padding: var(--content-spacing); /* Inner spacing */
-  height: 100%; /* Make sure the right panel takes up all the vertical space */
-}
-
-/* Define the particle container */
-.particle-container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
+  align-items: flex-start; /* Aligns children to the start */
+  justify-content: flex-start; /* Aligns children to the top */
   height: 100%;
-  pointer-events: none;
-  z-index: -1; /* Place behind other content */
-}
-
-/* Define the particle style */
-.particle {
-  position: absolute;
-  border-radius: 50%;
-  background: var(--star-color); /* Use the star color variable */
-  width: var(--star-size-small); /* Use the small star size variable */
-  height: var(--star-size-small); /* Use the small star size variable */
-  opacity: 0; /* Start fully transparent */
-  animation: moveParticle var(--star-animation-duration) infinite ease-in-out,
-             twinkle 1.5s infinite ease-in-out;
-}
-
-/* Particle movement animation */
-@keyframes moveParticle {
-  0%, 100% {
-    opacity: 0;
-    transform: scale(0.9);
-  }
-  50% {
-    opacity: 0.4;
-    transform: scale(1.1);
-  }
-}
-
-/* Twinkle animation */
-@keyframes twinkle {
-  0%, 100% {
-    opacity: 0;
-  }
-  50% {
-    opacity: 0.4;
-  }
+  flex: 0 1 var(--panel-flex-basis-right);
 }
 
 .text-input, .text-analysis {
-  width: 100%; /* Fill the width */
-  margin-bottom: var(--content-spacing); /* Add space between elements */
-  /* Add other styles as necessary */
+  width: 100%;
+  margin-bottom: var(--content-spacing); /* Adjust the bottom margin as needed */
 }
 
-/* Adjusting the button styling to match the Welcome Screen */
 button {
   background: rgba(0, 0, 0, 0.4);
   color: var(--text-color);
@@ -133,7 +77,6 @@ button {
     inset 0 1px 2px rgba(0, 0, 0, 0.5),
     0 2px 4px rgba(0, 0, 0, 0.5);
   transition: background-color 0.3s ease, border-color 0.3s ease;
-  /* Other styles remain the same */
 }
 
 button:hover {
@@ -141,18 +84,35 @@ button:hover {
   border-color: var(--button-hover-border);
 }
 
-/* Responsive design adjustments */
 @media (max-width: 768px) {
-  .content {
-    flex-direction: column;
+  .main-container {
+    flex-direction: column; /* Stacks the panels vertically */
+    align-items: center; /* Centers the stacked panels */
   }
 
-  .left-panel,
-  .right-panel {
-    width: 100%;
-    padding: var(--content-spacing);
+  .left-panel, .right-panel {
+    flex-basis: auto; /* Allows the panels to adjust based on content */
+    width: 80%; /* Reduces the width to fit smaller screens better */
+    max-width: none; /* Removes the max-width restriction */
+    margin: var(--content-spacing) auto; /* Adds consistent margin around the panels */
+  }
+
+  .left-panel {
+    min-width: 250px; /* Ensures the Aura doesn't get too small */
+  }
+  
+  .footer {
+    position: relative; /* Adjusts the footer positioning */
+    width: 100%; /* Ensures the footer spans the full width of the screen */
+    order: 3; /* Positions the footer at the end */
   }
 }
 
+/* Adjustments for very small screens */
+@media (max-width: 480px) {
+  .left-panel, .right-panel {
+    width: 90%; /* Allows the panels to take up more space for readability */
+  }
+}
 
 

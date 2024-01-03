@@ -13,12 +13,14 @@ const Main = () => {
       <div className="main-container">
         {/* Add the particle container for the background effect */}
         <div className="particle-container">
-          {[...Array(200)].map((_, i) => (
+          {[...Array(50)].map((_, i) => (
             <div
               key={i}
               className="particle"
               style={{
-                '--random-delay': Math.random(), // Assign a random delay
+                '--random-delay': Math.random(),
+                top: `${Math.random() * 100}%`,
+                left: `${Math.random() * 100}%`,
               }}
             ></div>
           ))}

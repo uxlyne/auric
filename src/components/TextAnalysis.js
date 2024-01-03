@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from 'react';
-
-
+import '../styles/TextAnalysis.css'; // Import the CSS file
 
 // Define the analyzeText function here
 const analyzeText = (text) => {
-  // Your text analysis logic here
+  // Placeholder text analysis logic
   return {
     documentTone: {
       tone: 'Joy',
       score: 0.85,
-      color: '#FFD700', // Example color
+      color: '#FFD700', // Example color for Joy
     },
     sentiment: {
       label: 'Positive',
@@ -19,96 +18,55 @@ const analyzeText = (text) => {
 };
 
 const TextAnalysis = ({ text }) => {
-  const [analysisResult, setAnalysisResult] = useState(null);
+  const [analysisResult, setAnalysisResult] = useState({
+    documentTone: { tone: '', score: 0, color: '' },
+    sentiment: { label: '', score: 0 },
+  });
 
   useEffect(() => {
-    const result = analyzeText(text);
-    setAnalysisResult(result);
+    if (text) {
+      const result = analyzeText(text);
+      setAnalysisResult(result);
+    }
   }, [text]);
 
-  const styles = {
-    textAnalysisContainer: {
-      maxWidth: '600px',
-      width: '100%',
-      margin: '10px',
-      background: 'rgba(255, 255, 255, 0.05)',
-      padding: '20px',
-      borderRadius: '10px',
-      textAlign: 'left',
-    },
-    header: {
-      color: '#E8E8E8',
-      marginBottom: '1rem',
-    },
-    analysisResult: {
-      color: '#E8E8E8',
-      background: 'rgba(255, 255, 255, 0.1)',
-      border: '1px solid #5865F2',
-      padding: '10px',
-      borderRadius: '5px',
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-    },
-    toneItem: {
-      display: 'flex',
-      alignItems: 'center',
-      marginBottom: '8px',
-    },
-    toneSquare: {
-      width: '20px',
-      height: '20px',
-      marginRight: '8px',
-    },
-    sentimentSquare: {
-      width: '20px',
-      height: '20px',
-    },
-  };
-
   return (
-    <div style={styles.textAnalysisContainer}>
-      <h2 style={styles.header}>Text Analysis</h2>
-      <div style={styles.analysisResult}>
-        {analysisResult && (
-          <>
-            {/* Document Tone */}
-            <div style={styles.toneItem}>
-              <div
-                style={{
-                  ...styles.toneSquare,
-                  background: analysisResult.documentTone.color,
-                }}
-              ></div>
-              <div>
-                Tone: {analysisResult.documentTone.tone}
-                <br />
-                Score: {analysisResult.documentTone.score}
-              </div>
-            </div>
+    <div className="text-analysis-container">
+      <h2 className="text-analysis-header">Text Analysis</h2>
+      <div className="analysis-result">
+        {/* Document Tone */}
+        <div className="analysis-item">
+          <span className="analysis-title">Tone:</span>
+          <span className="analysis-score">{analysisResult.documentTone.tone}</span>
+          <div
+            className="tone-indicator"
+            style={{ backgroundColor: analysisResult.documentTone.color }}
+          ></div>
+          <span className="analysis-title">Score:</span>
+          <span className="analysis-score">{analysisResult.documentTone.score}</span>
+        </div>
 
-            {/* Sentiment */}
-            <div style={styles.toneItem}>
-              <div
-                style={{
-                  ...styles.sentimentSquare,
-                  background: `rgb(${255 - (analysisResult.sentiment.score * 255)}, ${255 - (analysisResult.sentiment.score * 255)}, ${255 - (analysisResult.sentiment.score * 255)})`,
-                }}
-              ></div>
-              <div>
-                Sentiment: {analysisResult.sentiment.label}
-                <br />
-                Score: {analysisResult.sentiment.score}
-              </div>
-            </div>
-          </>
-        )}
+        {/* Sentiment */}
+        <div className="analysis-item">
+          <span className="analysis-title">Sentiment:</span>
+          <span className="analysis-score">{analysisResult.sentiment.label}</span>
+          <div
+            className="sentiment-indicator"
+            style={{
+              backgroundColor: `rgba(255, ${255 * (1 - analysisResult.sentiment.score)}, 0, 1)`, // Color changes based on sentiment score
+            }}
+          ></div>
+          <span className="analysis-title">Score:</span>
+          <span className="analysis-score">{analysisResult.sentiment.score}</span>
+        </div>
       </div>
     </div>
   );
 };
 
 export default TextAnalysis;
+
+
 
 
 

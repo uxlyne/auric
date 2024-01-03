@@ -1,0 +1,36 @@
+/* TextInput.css */
+
+.text-input-container {
+    max-width: 600px;
+    width: 100%;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: left;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .text-input-header {
+    color: #E8E8E8;
+    margin-bottom: 1rem;
+  }
+  
+  .textarea {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid #5865F2;
+    color: #E8E8E8;
+    padding: 10px;
+    border-radius: 5px;
+    resize: none;
+    height: 150px;
+    overflow-y: auto;
+  }
+  
+  .textarea::placeholder {
+    color: #A5A5A5; /* Placeholder text color */
+  }
+  
+  
+  

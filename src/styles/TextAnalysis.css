@@ -1,0 +1,60 @@
+/* TextAnalysis.css */
+
+.text-analysis-container {
+  max-width: 600px;
+  width: 100%;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.05); /* Slight transparency for depth */
+  padding: 20px;
+  border-radius: 10px; /* Soft rounded corners */
+  text-align: left;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Deeper shadow for a floating effect */
+}
+
+.text-analysis-header {
+  color: #E8E8E8;
+  margin-bottom: 1rem;
+  font-weight: 500; /* Semi-bold for emphasis */
+  font-size: 1.25rem; /* Slightly larger font size for headers */
+}
+
+.analysis-item {
+  background: rgba(0, 0, 0, 0.2); /* Dark background for each item */
+  border-left: 4px solid #FFC107; /* Accent color to signify importance */
+  padding: 10px;
+  border-radius: 5px; /* Consistent rounded corners */
+  margin-bottom: 1rem; /* Space between analysis items */
+}
+
+.analysis-title {
+  color: #FFC107; /* Use of accent color for titles */
+  font-size: 1rem;
+  margin: 0;
+  padding-bottom: 5px; /* Small padding for visual separation */
+}
+
+.analysis-score {
+  color: #E8E8E8; /* Light text for contrast against dark background */
+  font-weight: 300; /* Lighter font-weight for a modern aesthetic */
+  font-size: 1.5rem; /* Larger font size for impact */
+  margin: 0;
+}
+
+/* Hover effects for interactivity */
+.analysis-item:hover {
+  background: rgba(0, 0, 0, 0.3); /* Slightly lighten on hover */
+  cursor: pointer; /* Changes the cursor to suggest interactivity */
+}
+
+/* Responsive design adjustments for smaller screens */
+@media (max-width: 768px) {
+  .text-analysis-container,
+  .textarea {
+    padding: 15px; /* Smaller padding on smaller screens */
+  }
+
+  .analysis-title,
+  .analysis-score {
+    font-size: 1rem; /* Adjust font sizes for a balanced look on smaller screens */
+  }
+}
