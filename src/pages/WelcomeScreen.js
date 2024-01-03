@@ -30,7 +30,7 @@ const WelcomePage = () => {
   return (
     <div className="welcome">
       {/* Header */}
-      <div className="header">
+      <div>
         <div className="promo-words promo-top-left">Aura Emotional Awareness</div>
         <div className="promo-words promo-top-right">Tools for Insight</div>
         <div className="promo-words promo-bottom-right">Created By Amy Lyne</div>
@@ -54,7 +54,6 @@ const WelcomePage = () => {
           ))}
         </div>
 
-        {/* ... */}
   <div className="auraGlow"></div> {/* New element for testing */}
         
         {/* Eclipse */}

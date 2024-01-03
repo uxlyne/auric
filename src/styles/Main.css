@@ -1,30 +1,38 @@
 /* Main Page Styles to match Welcome Screen */
-
 :root {
-  /* Color scheme to match the Welcome Screen */
-  --background-color: #0a0a0a; /* Dark background */
-  --text-color: #ffffff; /* Bright text */
-  --accent-color: #4ECCA3; /* Accent color matching the Welcome Screen's palette */
-  --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Consistent font */
-  --content-spacing: 20px;
-  --header-height: 60px;
-  --footer-height: 60px;
+  --background-color: #0a0a0a; /* Dark base color for deep space effect */
+  --star-color: #ffffff; /* Color for the stars */
+  --star-size-small: 1px; /* Size for distant stars */
+  --star-size-large: 2px; /* Size for closer stars */
+  --star-animation-duration: 120s; /* Duration for the parallax animation */
 }
 
 .app {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background-color: var(--background-color); /* Matching dark background */
-  color: var(--text-color); /* Bright text for contrast */
-  font-family: var(--font-family); /* Consistent font */
-  overflow: hidden; /* This prevents any overflow from causing scrolling */
+  background-color: var(--background-color);
+  color: var(--text-color);
+  font-family: var(--font-family);
+  overflow: hidden;
+  position: relative;
+}
+
+
+@keyframes moveStarsFar {
+  from { background-position: 0 0, 50px 50px; }
+  to { background-position: -10000px 5000px, -10050px 5050px; }
+}
+
+@keyframes moveStarsClose {
+  from { background-position: 25px 25px, 75px 75px; }
+  to { background-position: -5000px 2500px, -5075px 2575px; }
 }
 
 .header, .footer {
   /* Styling for header and footer to match the aura theme */
-  background-color: #1F1F1F; /* Darker shade for header and footer */
-  color: #E8E8E8; /* Lighter text color for readability */
+  background-color: var(--background-color);
+  color: var(--text-color);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -32,12 +40,13 @@
 }
 
 .main-container {
-  flex: 1; 
+  flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center; /* Centers content vertically if there's extra space */
-  background: radial-gradient(circle at center, #1F1F1F 0%, #000000 100%); /* Radial gradient background */
-  overflow: hidden; /* Prevents the main content from causing scrolling */
+  justify-content: center;
+  background: var(--background-color); /* Use the same background color variable */
+  position: relative;
+  overflow: hidden;
 }
 
 .content {
@@ -75,18 +84,21 @@
 
 /* Adjusting the button styling to match the Welcome Screen */
 button {
-  background-color: var(--accent-color); /* Use the accent color */
-  color: var(--background-color); /* Contrast text color */
-  border: none;
-  border-radius: 5px;
-  padding: 10px 20px;
-  cursor: pointer;
-  font-family: var(--font-family); /* Consistent font */
-  transition: background-color 0.3s ease;
+  background: rgba(0, 0, 0, 0.4);
+  color: var(--text-color);
+  border: 1px solid var(--button-border-color);
+  border-radius: 25px;
+  box-shadow: 
+    inset 0 -1px 2px rgba(255, 255, 255, 0.15),
+    inset 0 1px 2px rgba(0, 0, 0, 0.5),
+    0 2px 4px rgba(0, 0, 0, 0.5);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+  /* Other styles remain the same */
 }
 
 button:hover {
-  background-color: lighten(var(--accent-color), 10%); /* Lighter shade on hover */
+  background: var(--button-hover-background);
+  border-color: var(--button-hover-border);
 }
 
 /* Responsive design adjustments */

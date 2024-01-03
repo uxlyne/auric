@@ -191,8 +191,9 @@
   color: rgba(165, 165, 165, 0.75);
   text-transform: uppercase;
   letter-spacing: 1px;
-  z-index: 3;
+  z-index: 2; /* Change the z-index value */
 }
+
 
 .promo-top-left {
   top: 10px;

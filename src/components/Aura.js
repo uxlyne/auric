@@ -1,64 +1,70 @@
 const Aura = () => {
-  // Define the size of the Aura as a percentage of the viewport width
-  const auraSize = '40vw'; // 30% of the viewport width
+  const auraSize = '40vw'; // 40% of the viewport width
 
   const style = {
-    auracontainer: {
+    auraContainer: {
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
       justifyContent: 'center',
       position: 'relative',
-    },
-    eclipse: {
-      width: auraSize,
       height: auraSize,
-      maxWidth: '500px', // You can set a max size to ensure it doesn't get too big
+      width: auraSize,
+      maxWidth: '500px', // Set a max size to ensure it doesn't get too big
       maxHeight: '500px',
-      background: '#1E1E1E',
-      borderRadius: '50%',
-      boxShadow: 'inset 0 0 20px rgba(0, 0, 0, 0.8)',
-      position: 'relative',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
     },
-    glow: {
+    orb: {
       width: '100%',
       height: '100%',
+      background: 'rgba(255, 255, 255, 0.1)',
+      backdropFilter: 'blur(10px)',
       borderRadius: '50%',
-      background: 'radial-gradient(closest-side, rgba(0, 174, 255, 0.3) 60%, transparent)',
-      boxShadow: '0 0 30px rgba(0, 174, 255, 0.7)',
-      position: 'absolute',
-      top: '50%',
-      left: '50%',
-      transform: 'translate(-50%, -50%)',
+      border: '2px solid rgba(255, 255, 255, 0.2)',
+      boxShadow: 'inset 0 0 20px rgba(255, 255, 255, 0.2), 0 0 30px rgba(0, 174, 255, 0.5)',
+      position: 'relative',
+      overflow: 'hidden',
     },
-    concentric: {
-      width: '90%',
-      height: '90%',
-      borderRadius: '50%',
-      border: '1px solid rgba(0, 174, 255, 0.6)',
-      boxShadow: '0 0 15px rgba(0, 174, 255, 0.5)',
+    glow: {
       position: 'absolute',
       top: '50%',
       left: '50%',
+      width: '300%',
+      height: '300%',
       transform: 'translate(-50%, -50%)',
+      background: 'radial-gradient(circle at center, rgba(255, 255, 255, 0.2) 20%, transparent 70%)',
+      borderRadius: '50%',
+      animation: 'rotate 10s linear infinite',
+      filter: 'blur(30px)',
     },
   };
 
+
+  const Concentric = ({ size, delay }) => {
+    return (
+      <div
+        style={{
+          ...style.glow,
+          width: size,
+          height: size,
+          animationDelay: delay,
+        }}
+      />
+    );
+  };
+
   return (
-    <div style={style.auracontainer}>
-      <div style={style.eclipse}>
-        <div style={style.glow}></div>
-        <div style={style.concentric}></div>
-        {/* Add more concentric divs here if needed */}
+    <div style={style.auraContainer}>
+      <div style={style.orb}>
+        <Concentric size="80%" delay="0s" />
+        <Concentric size="60%" delay="-5s" />
+        <Concentric size="40%" delay="-2.5s" />
       </div>
     </div>
   );
 };
 
 export default Aura;
+
 
 
 
