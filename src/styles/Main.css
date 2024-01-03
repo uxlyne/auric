@@ -85,33 +85,15 @@ button:hover {
 }
 
 @media (max-width: 768px) {
-  .main-container {
-    flex-direction: column; /* Stacks the panels vertically */
-    align-items: center; /* Centers the stacked panels */
+  .content {
+    flex-direction: column;
+    width: 100%;
   }
 
   .left-panel, .right-panel {
-    flex-basis: auto; /* Allows the panels to adjust based on content */
-    width: 80%; /* Reduces the width to fit smaller screens better */
-    max-width: none; /* Removes the max-width restriction */
-    margin: var(--content-spacing) auto; /* Adds consistent margin around the panels */
-  }
-
-  .left-panel {
-    min-width: 250px; /* Ensures the Aura doesn't get too small */
-  }
-  
-  .footer {
-    position: relative; /* Adjusts the footer positioning */
-    width: 100%; /* Ensures the footer spans the full width of the screen */
-    order: 3; /* Positions the footer at the end */
-  }
-}
-
-/* Adjustments for very small screens */
-@media (max-width: 480px) {
-  .left-panel, .right-panel {
-    width: 90%; /* Allows the panels to take up more space for readability */
+    flex-basis: auto; /* Panels can grow or shrink as needed on smaller screens */
+    width: 100%; /* Adjust the width for smaller screens */
+    margin: var(--content-spacing) auto;
   }
 }
 

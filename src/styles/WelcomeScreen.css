@@ -289,7 +289,7 @@
   .tagline {
     font-size: 1rem; /* Smaller font size for tagline on smaller screens */
     max-width: 300px; /* Smaller width for the tagline */
-    top: 50%; /* Adjust position to fit the layout */
+    top: 60%; /* Adjust position to fit the layout */
   }
 
   .eclipse {
@@ -362,3 +362,36 @@
     opacity: 0;
   }
 }
+
+/* Media Query for Mobile and Tablet Views */
+@media (max-width: 768px) {
+  .promo-words {
+    display: none; /* Hide promo text on smaller screens */
+  }
+
+  .auraTitleContainer {
+    top: 40%; /* Adjusted for mobile screens to lower the title */
+  }
+
+  .auraTitle {
+    font-size: 4rem; /* Reduced font size for mobile screens */
+    white-space: nowrap; /* Prevent title text from wrapping onto a new line */
+  }
+
+  .slogan-container {
+    top: 53%; /* Adjusted for mobile screens to lower the slogan */
+  }
+
+  .slogan-top,
+  .slogan-bottom {
+    font-size: 1rem; /* Reduced font size for mobile screens */
+    white-space: nowrap; /* Prevent slogan text from wrapping onto a new line */
+  }
+
+  .startButton {
+    padding: 0.5rem 1rem; /* Reduced padding for mobile and tablet screens */
+    top: 68%; /* Adjusted button position for mobile and tablet screens */
+  }
+}
+
+
