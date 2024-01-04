@@ -7,8 +7,7 @@ const WelcomePage = () => {
   const generateSparkles = () => {
     const colors = ['#A7BBEC', '#F7A8B8', '#A4DEB9', '#F3D1AE']; // Your color palette
     let sparkles = [];
-    for (let i = 0; i < 200; i++) {
-      // Set the max size for the sparkles to 5px
+    for (let i = 0; i < 50; i++) { // Reduced number of sparkles
       const size = Math.random() * 5; // Sparkles will vary in size up to 5px
       const color = colors[Math.floor(Math.random() * colors.length)]; // Random color from palette
       const style = {
@@ -26,6 +25,7 @@ const WelcomePage = () => {
     }
     return sparkles;
   };
+  
 
   return (
     <div className="welcome">
@@ -42,17 +42,18 @@ const WelcomePage = () => {
       {/* Main Content */}
       <div className="main-content">
         {/* Particles Container */}
-        <div className="particles-container">
-          {[...Array(50)].map((_, i) => (
-            <div
-              key={i}
-              className="dust-particle"
-              style={{
-                '--random-delay': Math.random(), // Assign a random delay
-              }}
-            ></div>
-          ))}
-        </div>
+      <div className="particles-container">
+        {[...Array(20)].map((_, i) => ( // Reduced number of dust particles
+          <div
+            key={i}
+            className="dust-particle"
+            style={{
+              '--random-delay': Math.random(), // Assign a random delay
+            }}
+          ></div>
+        ))}
+      </div>
+
 
   <div className="auraGlow"></div> {/* New element for testing */}
         
