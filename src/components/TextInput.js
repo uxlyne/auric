@@ -1,56 +1,66 @@
 import React, { useState } from 'react';
-import '../styles/TextInput.css'; // Import the CSS file
+import '../styles/TextInput.css';
 
 const TextInput = () => {
+  // State variables
   const [inputText, setInputText] = useState('');
-  const [analysisResult, setAnalysisResult] = useState(null); // State to store analysis results
+  const [analysisResult, setAnalysisResult] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const handleInputChange = (e) => {
-    setInputText(e.target.value);
-  };
+  // Function to analyze text
+  const analyzeText = async () => {
+    // Clear previous errors
+    setError(null);
 
-  const handleAnalyzeClick = async () => {
-    // Check if inputText is not empty before making the API request
+    // Check if inputText is empty
     if (inputText.trim() === '') {
-      alert('Please enter some text to analyze.');
+      setError('Please enter some text to analyze.');
       return;
     }
 
-    console.log(`API Key Length: ${process.env.IBM_WATSON_API_KEY.length}`);
-    console.log('hey');
+    // Check if the API key is defined
+    if (!process.env.REACT_APP_IBM_WATSON_API_KEY) {
+      console.error('REACT_APP_IBM_WATSON_API_KEY is not defined. Please set the environment variable.');
+      setError('API key not defined. Please set the environment variable.');
+      return;
+    }
 
+    // Display the API key in the console for testing
+    console.log('API Key:', process.env.REACT_APP_IBM_WATSON_API_KEY);
 
-    // Define custom headers with your API key
-    const customHeaders = {
-      'Content-Type': 'application/json',
-      Authorization: `Basic ${process.env.IBM_WATSON_API_KEY}`,
-    };
+    // Start loading
+    setLoading(true);
 
     try {
-      setLoading(true); // Display a loading indicator
-      setError(null);
-
+      // Make the API request
       const response = await fetch('/api/analyze', {
         method: 'POST',
-        headers: customHeaders,
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Basic ${process.env.REACT_APP_IBM_WATSON_API_KEY}`,
+        },
         body: JSON.stringify({ text: inputText }),
       });
 
       if (response.ok) {
+        // Parse the response data
         const data = await response.json();
-        setAnalysisResult(data); // Update the state with analysis results
+        setAnalysisResult(data);
       } else {
-        console.error('Failed to analyze text:', response.statusText);
         setError('Error analyzing the text. Please try again.');
       }
     } catch (error) {
-      console.error('Error:', error);
       setError('Error analyzing the text. Please try again.');
     } finally {
-      setLoading(false); // Hide the loading indicator after API response
+      // Stop loading
+      setLoading(false);
     }
+  };
+
+  // Function to handle the analyze button click
+  const handleAnalyzeClick = () => {
+    analyzeText();
   };
 
   return (
@@ -59,30 +69,36 @@ const TextInput = () => {
       <textarea
         placeholder="Enter text here..."
         value={inputText}
-        onChange={handleInputChange}
+        onChange={(e) => setInputText(e.target.value)}
         className="textarea"
       />
       <button className="analyze-button" onClick={handleAnalyzeClick}>
         Analyze
       </button>
-
-      {/* Display the analysis result */}
-      {loading ? (
-        <p>Loading analysis...</p>
-      ) : error ? (
-        <p className="error-message">{error}</p>
-      ) : analysisResult ? (
+      {loading && <p>Loading analysis...</p>}
+      {error && <p className="error-message">{error}</p>}
+      {analysisResult && (
         <div className="analysis-result">
           {/* Render the analysis result here */}
           {/* You can pass analysisResult as a prop to TextAnalysis component */}
           {/* Example: <TextAnalysis data={analysisResult} /> */}
         </div>
-      ) : null}
+      )}
     </div>
   );
 };
 
 export default TextInput;
+
+
+
+
+
+
+
+
+
+
 
 
 

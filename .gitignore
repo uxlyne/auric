@@ -23,7 +23,7 @@ yarn-debug.log*
 yarn-error.log*
 
 # Ignore API environment variables file
-src/services/api.env
+api.env
 
 
 #service account
