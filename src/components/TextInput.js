@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios'; // Import Axios
 import '../styles/TextInput.css';
 
 const TextInput = () => {
@@ -19,34 +20,23 @@ const TextInput = () => {
       return;
     }
 
-    // Check if the API key is defined
-    if (!process.env.REACT_APP_IBM_WATSON_API_KEY) {
-      console.error('REACT_APP_IBM_WATSON_API_KEY is not defined. Please set the environment variable.');
-      setError('API key not defined. Please set the environment variable.');
-      return;
-    }
-
-    // Display the API key in the console for testing
-    console.log('API Key:', process.env.REACT_APP_IBM_WATSON_API_KEY);
-
     // Start loading
     setLoading(true);
 
     try {
-      // Make the API request
-      const response = await fetch('/api/analyze', {
-        method: 'POST',
+      // Make the API request using Axios
+      const response = await axios.post('/api/analyze', {
+        text: inputText
+      }, {
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Basic ${process.env.REACT_APP_IBM_WATSON_API_KEY}`,
-        },
-        body: JSON.stringify({ text: inputText }),
+          Authorization: `Basic ${process.env.REACT_APP_IBM_WATSON_API_KEY}`
+        }
       });
 
-      if (response.ok) {
-        // Parse the response data
-        const data = await response.json();
-        setAnalysisResult(data);
+      // Handle the response data
+      if (response.status === 200) {
+        setAnalysisResult(response.data);
       } else {
         setError('Error analyzing the text. Please try again.');
       }
@@ -89,6 +79,7 @@ const TextInput = () => {
 };
 
 export default TextInput;
+
 
 
 
