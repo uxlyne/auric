@@ -23,7 +23,8 @@ yarn-debug.log*
 yarn-error.log*
 
 # Ignore API environment variables file
-/services/api.env
+src/services/api.env
+
 
 #service account
 auric-409119-514a950fc3fe.json
