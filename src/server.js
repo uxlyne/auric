@@ -1,95 +1,70 @@
-// Define the port number
-const PORT = 3000; // You can use any port number you prefer
-
 const express = require('express');
-const axios = require('axios');
 const path = require('path');
-const { OAuth2Client } = require('google-auth-library');
-const language = require('@google-cloud/language');
-const app = express();
 const cors = require('cors');
+const zlib = require('zlib');
+const { IamAuthenticator } = require('ibm-watson/auth');
+const NaturalLanguageUnderstandingV1 = require('ibm-watson/natural-language-understanding/v1');
+require('dotenv').config({ path: './src/.env' }); // Update the path to match the new location
+
+// Debugging: Log the environment variables to the console
+console.log('IBM_WATSON_API_KEY:', process.env.IBM_WATSON_API_KEY);
+
+
+
+dotenv.config(); // Load environment variables from the .env file in the project root
+
+const app = express();
 
 app.use(cors());
-
 app.use(express.json());
 
-const oauth2Client = new OAuth2Client(
-  process.env.GOOGLE_CLIENT_ID,
-  process.env.GOOGLE_CLIENT_SECRET,
-  'YOUR_REDIRECT_URI'
-);
+const nlu = new NaturalLanguageUnderstandingV1({
+  version: '2022-04-07',
+  authenticator: new IamAuthenticator({
+    apikey: process.env.IBM_WATSON_API_KEY, // Access the API key from environment variables
+  }),
+  serviceUrl: 'https://api.us-south.natural-language-understanding.watson.cloud.ibm.com',
+});
 
-// Define the API route for sentiment analysis
-app.post('/api/sentiment', async (req, res) => {
-  const text = req.body.text;
-  const googleApiUrl = 'https://language.googleapis.com/v2/documents:analyzeSentiment';
+app.post('/api/analyze', async (req, res) => {
+  const inputText = req.body.text;
 
-  try {
-    const response = await axios.post(googleApiUrl, {
-      document: {
-        content: text,
-        type: 'PLAIN_TEXT'
-      },
-      encodingType: 'UTF8'
-    }, {
-      headers: {
-        'Authorization': `Bearer ${process.env.GOOGLE_API_KEY}`
-      }
-    });
-
-    res.json(response.data);
-  } catch (error) {
-    console.error('Sentiment analysis failed:', error);
-    if (error.response) {
-      res.status(error.response.status).send(error.response.data);
-    } else {
-      res.status(500).send('Internal Server Error');
+  zlib.gzip(inputText, async (err, compressedData) => {
+    if (err) {
+      console.error('Error compressing data:', err);
+      res.status(500).json({ error: 'Internal server error' });
+      return;
     }
-  }
+
+    try {
+      const analyzeParams = {
+        text: inputText,
+        features: {
+          emotion: {}, // Include the Emotion feature
+        },
+      };
+
+      const analysisResults = await nlu.analyze(analyzeParams);
+      res.status(200).json(analysisResults);
+    } catch (error) {
+      console.error('Error analyzing text:', error);
+      res.status(500).json({ error: 'Internal server error' });
+    }
+  });
 });
 
-// New route for quickstart function
-app.get('/api/quickstart', async (req, res) => {
-  try {
-    const sentimentResult = await quickstart();
-    res.json(sentimentResult);
-  } catch (error) {
-    console.error('Error in quickstart API:', error);
-    res.status(500).send('Internal Server Error');
-  }
-});
-
-// Quickstart function
-async function quickstart() {
-  const client = new language.LanguageServiceClient();
-  const text = 'Hello, world!';
-  const document = {
-    content: text,
-    type: 'PLAIN_TEXT',
-  };
-
-  const [result] = await client.analyzeSentiment({ document: document });
-  const sentiment = result.documentSentiment;
-
-  return {
-    text: text,
-    score: sentiment.score,
-    magnitude: sentiment.magnitude
-  };
-}
-
-// Serve static files from the React build directory
 app.use(express.static(path.join(__dirname, 'build')));
 
-// Handle SPA routing - serve index.html for any unknown routes
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
-// Start the server
+const PORT = process.env.PORT || 3000; // Use the specified PORT or default to 3000
+
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
+
 
 
 

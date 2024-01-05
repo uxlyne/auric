@@ -1,60 +1,61 @@
-const Aura = () => {
-  const auraSize = '40vw'; // 40% of the viewport width
+import React from 'react';
+import '../styles/Aura.css'; // Import the CSS file
 
-  const style = {
-    auraContainer: {
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      justifyContent: 'center',
-      position: 'relative',
-      height: auraSize,
-      width: auraSize,
-      maxWidth: '500px',
-      maxHeight: '500px',
-    },
-    orb: {
-      width: '100%',
-      height: '100%',
-      background: 'rgba(255, 255, 255, 0.1)',
-      backdropFilter: 'blur(10px)',
-      borderRadius: '50%',
-      border: '2px solid rgba(255, 255, 255, 0.3)', // Made border slightly more visible
-      boxShadow: 'inset 0 0 30px rgba(255, 255, 255, 0.3), 0 0 40px rgba(0, 174, 255, 0.7)', // Enhanced glow
-      position: 'relative',
-      overflow: 'hidden',
-    },
-    glow: {
-      position: 'absolute',
-      top: '50%',
-      left: '50%',
-      width: '300%',
-      height: '300%',
-      transform: 'translate(-50%, -50%)',
-      background: 'radial-gradient(circle at center, rgba(0, 174, 255, 0.4) 20%, transparent 70%)', // Introducing a more vivid color
-      borderRadius: '50%',
-      animation: 'rotate 10s linear infinite',
-      filter: 'blur(40px)', // Increased blur for a softer glow
-    },
+const Concentric = ({ size, delay }) => {
+  return (
+    <div
+      className="glow"
+      style={{
+        width: size,
+        height: size,
+        animationDelay: delay,
+      }}
+    />
+  );
+};
+
+const Aura = ({ emotion, sentiment }) => {
+  // Define a mapping between emotions and colors
+  const emotionColors = {
+    happiness: 'rgba(255, 223, 186, 0.5)', // Example color for happiness
+    sadness: 'rgba(100, 100, 255, 0.5)',   // Example color for sadness
+    anger: 'rgba(255, 0, 0, 0.5)',         // Example color for anger
+    disgust: 'rgba(75, 0, 130, 0.5)',      // Example color for disgust
+    fear: 'rgba(0, 128, 0, 0.5)',           // Example color for fear
+    // Add more emotions and corresponding colors as needed
   };
 
+  // Define a color scale for sentiment
+const sentimentColors = {
+  positive: 'rgba(255, 165, 0, 0.5)', // Warm orange color for positive sentiment
+  neutral: 'rgba(255, 255, 255, 0.1)',  // Default color for neutral sentiment (e.g., white)
+  negative: 'rgba(100, 100, 255, 0.5)', // Cool color for negative sentiment (e.g., blue)
+};
 
-  const Concentric = ({ size, delay }) => {
-    return (
-      <div
-        style={{
-          ...style.glow,
-          width: size,
-          height: size,
-          animationDelay: delay,
-        }}
-      />
-    );
-  };
+
+  // Default color if the emotion or sentiment is not found in the mapping
+  const defaultColor = 'rgba(255, 255, 255, 0.1)';
+
+  // Get the color based on emotion or sentiment, or use the default color
+  const orbColor = emotionColors[emotion] || sentimentColors[sentiment] || defaultColor;
+
+  // Determine the glow color based on sentiment
+  const glowColor = sentimentColors[sentiment] || defaultColor;
 
   return (
-    <div style={style.auraContainer}>
-      <div style={style.orb}>
+    <div className="aura-container">
+      <div
+        className="orb"
+        style={{
+          background: orbColor,
+        }}
+      >
+        <div
+          className="glow"
+          style={{
+            background: glowColor,
+          }}
+        />
         <Concentric size="80%" delay="0s" />
         <Concentric size="60%" delay="-5s" />
         <Concentric size="40%" delay="-2.5s" />
@@ -64,6 +65,14 @@ const Aura = () => {
 };
 
 export default Aura;
+
+
+
+
+
+
+
+
 
 
 

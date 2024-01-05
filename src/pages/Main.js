@@ -31,7 +31,10 @@ const Main = () => {
             <Aura />
           </div>
           <div className="right-panel">
+            {/* Add the TextInput component */}
             <TextInput />
+
+            {/* Add the TextAnalysis component */}
             <TextAnalysis />
           </div>
         </div>
@@ -40,6 +43,7 @@ const Main = () => {
     </div>
   );
 }
+
 
 export default Main;
 
