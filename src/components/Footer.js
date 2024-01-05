@@ -20,7 +20,7 @@ const Footer = () => {
 
   return (
     <footer style={footerStyle}>
-      © 2023 Auric Emotional Awareness
+      © 2024 Auric Emotional Awareness
     </footer>
   );
 };

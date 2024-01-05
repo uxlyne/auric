@@ -10,7 +10,7 @@ const Aura = () => {
       position: 'relative',
       height: auraSize,
       width: auraSize,
-      maxWidth: '500px', // Set a max size to ensure it doesn't get too big
+      maxWidth: '500px',
       maxHeight: '500px',
     },
     orb: {
@@ -19,8 +19,8 @@ const Aura = () => {
       background: 'rgba(255, 255, 255, 0.1)',
       backdropFilter: 'blur(10px)',
       borderRadius: '50%',
-      border: '2px solid rgba(255, 255, 255, 0.2)',
-      boxShadow: 'inset 0 0 20px rgba(255, 255, 255, 0.2), 0 0 30px rgba(0, 174, 255, 0.5)',
+      border: '2px solid rgba(255, 255, 255, 0.3)', // Made border slightly more visible
+      boxShadow: 'inset 0 0 30px rgba(255, 255, 255, 0.3), 0 0 40px rgba(0, 174, 255, 0.7)', // Enhanced glow
       position: 'relative',
       overflow: 'hidden',
     },
@@ -31,10 +31,10 @@ const Aura = () => {
       width: '300%',
       height: '300%',
       transform: 'translate(-50%, -50%)',
-      background: 'radial-gradient(circle at center, rgba(255, 255, 255, 0.2) 20%, transparent 70%)',
+      background: 'radial-gradient(circle at center, rgba(0, 174, 255, 0.4) 20%, transparent 70%)', // Introducing a more vivid color
       borderRadius: '50%',
       animation: 'rotate 10s linear infinite',
-      filter: 'blur(30px)',
+      filter: 'blur(40px)', // Increased blur for a softer glow
     },
   };
 

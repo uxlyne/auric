@@ -1,70 +1,82 @@
-/* Main Page Styles to match Welcome Screen */
 :root {
-  --background-color: #000000; /* Base dark color for background */
+  --background-color: #0A0A0A; /* Dark color for the deep background */
+  --background-gradient-center: #1a1a1a; /* Slightly lighter center color */
+  --background-edge: #000000; /* Black color for edges */
   --text-color: #ffffff; /* Color for text */
   --font-family: 'Arial', sans-serif; /* Font family for text */
   --content-spacing: 50px; /* Spacing between content elements */
-  --button-border-color: #ffffff; /* Border color for buttons */
-  --button-hover-background: rgba(0, 0, 0, 0.6); /* Background color on button hover */
-  --button-hover-border: #ffffff; /* Border color on button hover */
-  --panel-flex-basis: 500px; /* Basis size for panels, adjust as needed */
+  --button-border-color: #ffffff; /* White border color for buttons */
+  --button-hover-background: #ffffff; /* White background color on button hover */
+  --button-hover-border: #000000; /* Black border color on button hover */
+  --panel-background-color: rgba(255, 255, 255, 0.05); /* Slight white tint for panel background */
+  --inset-shadow: inset 0 0 30px #000000; /* Inset shadow for sunk effect */
 }
 
 .app {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background-color: var(--background-color); /* Solid background color */
+  /* Radial gradient for darker edges */
+  background: radial-gradient(circle at center, var(--background-gradient-center), var(--background-edge) 70%);
   color: var(--text-color);
   font-family: var(--font-family);
   overflow: hidden;
 }
+
+.main-container {
+  flex: 1;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: var(--content-spacing);
+  /* Inset shadow for main content area */
+  box-shadow: var(--inset-shadow);
+}
+
 
 .header, .footer {
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 1rem;
-  background-color: var(--background-color); /* Ensures consistency in color */
+  background-color: var(--background-color);
   color: var(--text-color);
 }
 
-.main-container {
-  flex: 1;
-  display: flex;
-  justify-content: space-around;/* Center the content horizontally */
-  align-items: center;  /* Align the content to the top */
-  background-color: var(--background-color); /* Use the same background color */
-  padding: var(--content-spacing);
-}
 
 .content {
   display: flex;
-  width: calc(100% - 2 * var(--content-spacing)); /* Adjust width based on content spacing */
-  max-width: 1200px; /* Maximum width of the content area */
-  margin: auto; /* Centers the content area */
+  width: calc(100% - 2 * var(--content-spacing));
+  max-width: 1200px;
+  margin: auto;
 }
 
 .left-panel, .right-panel {
-  flex: 0 1 var(--panel-flex-basis); /* Flex basis controls the initial size of the panel */
+  flex: 0 1 var(--panel-flex-basis);
   display: flex;
   flex-direction: column;
-  padding: var(--content-spacing); /* Inner spacing */
-  max-width: var(--panel-flex-basis);
-
+  padding: var(--content-spacing);
+  background-color: var(--panel-background-color);
+  border-radius: 10px; /* Rounded corners */
 }
 
-/* For the right-panel, you might adjust the flex basis to change its initial size */
+.left-panel {
+  margin-right: 20px;
+}
+
 .right-panel {
-  align-items: flex-start; /* Aligns children to the start */
-  justify-content: flex-start; /* Aligns children to the top */
-  height: 100%;
-  flex: 0 1 var(--panel-flex-basis-right);
+  margin-left: 20px;
 }
+
 
 .text-input, .text-analysis {
   width: 100%;
-  margin-bottom: var(--content-spacing); /* Adjust the bottom margin as needed */
+  margin-bottom: var(--content-spacing);
+  border: 1px solid var(--button-border-color);
+  background-color: transparent;
+  color: var(--text-color);
+  padding: 10px;
+  margin: 10px;
 }
 
 button {
@@ -72,28 +84,24 @@ button {
   color: var(--text-color);
   border: 1px solid var(--button-border-color);
   border-radius: 25px;
-  box-shadow: 
-    inset 0 -1px 2px rgba(255, 255, 255, 0.15),
-    inset 0 1px 2px rgba(0, 0, 0, 0.5),
-    0 2px 4px rgba(0, 0, 0, 0.5);
   transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 button:hover {
   background: var(--button-hover-background);
+  color: var(--button-hover-border);
   border-color: var(--button-hover-border);
 }
+
 
 @media (max-width: 768px) {
   .content {
     flex-direction: column;
     width: 100%;
   }
-
-  .left-panel, .right-panel {
-    flex-basis: auto; /* Panels can grow or shrink as needed on smaller screens */
-    width: 100%; /* Adjust the width for smaller screens */
-    margin: var(--content-spacing) auto;
+  
+  button {
+    box-shadow: none; /* Simplify button styling on smaller screens */
   }
 }
 
