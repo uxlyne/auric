@@ -2,7 +2,15 @@
 
 /* Root Variables */
 :root {
-  --aura-color: rgba(205, 178, 233, 0.712); /* Define the initial aura color */
+  --aura-color: #c800ff; /* Neon purple for the aura effect */
+  --background-color: #1c1c2d; /* Dark background color */
+  --text-color: #e1e1e2; /* Light grey for text */
+  --accent-color: #ff007a; /* Neon pink for accents */
+  --secondary-accent-color: #00d2ff; /* Neon blue for secondary accents */
+  --button-glow: rgba(0, 174, 255, 0.7); /* Neon glow for buttons */
+  --error-color: #E57373; /* Softer red for warnings or errors */
+  --success-color: #81C784; /* Softer green for confirmations */
+  --info-color: #64B5F6; /* Softer blue for information */
 }
 
 /* Welcome Screen Base Styles */
@@ -45,13 +53,14 @@
   height: 500px;
   border-radius: 50%;
   background-color: rgba(255, 255, 255, 0.016);
+  box-shadow: 0 0 20px var(--aura-color), 0 0 30px var(--aura-color);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 2;
-  backdrop-filter: blur(3px);
-  -webkit-backdrop-filter: blur(3px);
   animation: shimmer 5s infinite alternate;
 }
 

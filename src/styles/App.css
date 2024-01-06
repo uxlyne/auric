@@ -2,16 +2,18 @@
 
 /* Color Palette */
 :root {
-  --color-primary: #737c9c; /* A muted, sophisticated primary accent color */
-  --color-secondary: #A5ACAF; /* A soft, muted secondary accent color */
-  --color-background: #1F1F1F; /* Main background color */
-  --color-foreground: #E8E8E8; /* Main foreground color */
-  --color-text: #CACCD1; /* Soft white for primary text, enhancing readability */
-  --color-text-secondary: #A0A0A0; /* Secondary text color */
+  --color-primary: #c800ff; /* Bright neon pink */
+  --color-secondary: #00d2ff; /* Bright neon blue */
+  --color-tertiary:#ff007a; /* Bright neon purple */
+  --color-background: #1c1c2d; /* Dark background color */
+  --color-foreground: #2c2c3d; /* Foreground color for card backgrounds and such */
+  --color-text: #e1e1e2; /* Light grey for text for readability */
+  --color-text-secondary: #a1738c; /* Secondary text color, muted pink/purple */
   --color-error: #E57373; /* Softer red for warnings or errors */
   --color-success: #81C784; /* Softer green for confirmations */
   --color-info: #64B5F6; /* Softer blue for information */
-  
+  --color-accent-glow: rgba(0, 174, 255, 0.7); /* Glow effect color */
+
   --header-footer-height: 60px; /* Header and footer height */
   --content-spacing: 20px; /* Content spacing */
   --header-height: 60px; /* Header height */
@@ -62,21 +64,21 @@ a:hover {
 
 /* Button Styling */
 button {
-  background-color: var(--color-secondary); /* Muted color for buttons */
+  background-color: var(--color-secondary); /* Neon blue for buttons */
   color: var(--color-background);
-  border: none;
+  border: 1px solid var(--color-primary); /* Neon pink border */
   padding: 0.5rem 1rem;
-  border-radius: 3px; /* Rounded corners for elegance */
+  border-radius: 3px;
   cursor: pointer;
   font-family: 'Open Sans', Arial, sans-serif;
   font-size: 1rem;
-  transition: all 0.3s ease; /* Smooth transition for hover effects */
+  transition: all 0.3s ease;
 }
 
 button:hover {
-  background-color: var(--color-primary); /* Change to primary on hover */
+  background-color: var(--color-tertiary); /* Neon purple on hover */
+  border-color: var(--color-tertiary);
   color: var(--color-foreground);
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
 }
 
 /* Adjustments for Mobile Responsiveness */

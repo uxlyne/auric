@@ -7,25 +7,29 @@ const Footer = () => {
     padding: '1rem 2rem',
     textAlign: 'center',
     width: '100%',
-    position: 'absolute',
-    bottom: '0',
-    left: '0', 
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
     fontFamily: "'Helvetica Neue', sans-serif",
     fontSize: '0.9rem',
     color: 'rgba(255, 255, 255, 0.7)',
   };
 
+  const containerStyle = {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    minHeight: '80px', // Adjust the height as needed
+  };
+
   return (
-    <footer style={footerStyle}>
-      © 2024 Auric Emotional Awareness
-    </footer>
+    <div style={containerStyle}>
+      <footer style={footerStyle}>
+        © 2024 Auric Emotional Awareness
+      </footer>
+    </div>
   );
 };
 
 export default Footer;
+
 
 
 
