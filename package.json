@@ -33,7 +33,7 @@
     "web-vitals": "^3.5.1"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "react-scripts --max-http-header-size=1024 start",
     "start-backend": "nodemon server.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
