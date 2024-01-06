@@ -62,7 +62,6 @@
   align-items: center; /* Centers children horizontally in the flex container */
   justify-content: center; /* Centers children vertically in the flex container */
   padding: 30px;
-  background-color: var(--panel-background-color);
   border-radius: 10px;
   box-shadow: var(--inset-shadow);
   color: var(--text-color);
