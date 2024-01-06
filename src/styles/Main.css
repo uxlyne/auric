@@ -59,17 +59,18 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  padding: var(--content-spacing);
+  align-items: center; /* Centers children horizontally in the flex container */
+  justify-content: center; /* Centers children vertically in the flex container */
+  padding: 30px;
   background-color: var(--panel-background-color);
-  border: 1px solid var(--panel-border-color);
   border-radius: 10px;
-  box-shadow: var(--panel-box-shadow), inset 0 2px 4px var(--panel-inset-glow);
+  box-shadow: var(--inset-shadow);
   color: var(--text-color);
+  margin: 0;
 }
 
 .text-input, .text-analysis {
-  width: 100%;
-  margin-bottom: var(--content-spacing);
+  width: 100%; /* Subtracting the total padding from the width */
   border: 1px solid var(--panel-border-color);
   background-color: var(--input-background-color);
   color: var(--text-color);
@@ -99,10 +100,22 @@ button:hover {
   .content {
     flex-direction: column;
     width: 100%;
+    align-items: center; /* Aligns the flex children (panels) in the center */
   }
 
   .left-panel, .right-panel {
     margin: 0;
+    width: 90%; /* Sets a max width to the panel to avoid edge-to-edge stretching */
+    max-width: 500px; /* Optionally, set a max-width for larger screens within the breakpoint */
+    flex-basis: auto; /* Resets the flex basis to accommodate content size */
+    justify-content: center; /* Centers the content vertically in the flex direction */
+    align-items: center; /* Centers the content horizontally in the flex direction */
+  }
+
+  .text-input, .text-analysis {
+    margin: 0 auto; /* Additional centering for input and analysis components */
+    display: block; /* Ensures that these elements are treated as block-level for width calculations */
   }
 }
+
 

@@ -1,9 +1,7 @@
 /* TextAnalysis.css */
 
 .text-analysis-container {
-  max-width: 600px;
   width: 100%;
-  margin: 0 auto;
   background: rgba(255, 255, 255, 0.05); /* Slight transparency for depth */
   padding: 20px;
   border-radius: 10px; /* Soft rounded corners */
