@@ -68,44 +68,53 @@
   border-radius: 50%; /* Circular shape for a softer appearance */
 }
 
+
 .sentiment-section {
+  position: relative; /* Establishes a positioning context for absolutely positioned children */
   display: flex;
-  flex-direction: column; /* Stack the scale and score vertically */
-  align-items: flex-start; /* Align items to the start for a balanced look */
+  flex-direction: column;
+  align-items: center;
+  padding: 15px;
+  margin-bottom: 2rem;
 }
 
 .sentiment-scale {
   position: relative;
-  width: 100%; /* Full width of the container */
-  height: 10px; /* Height of the sentiment bar */
-  margin: 10px 0; /* Space above and below the bar */
+  width: 100%;
+  height: 8px;
+  margin-top: 8px;
   border-radius: 5px;
-  background: linear-gradient(to right, #ff9c22, #FFEBB7 50%, #2196F3); /* Gradient from warm to cool */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */
+  background: linear-gradient(to right, #E8E8E8, #8AB6D6 50%, #2D2D2D);
 }
 
 .sentiment-pointer {
   position: absolute;
   top: 50%;
-  left: 50%; /* Adjust as needed based on sentiment score */
-  transform: translate(-50%, -50%); /* Center the pointer */
+  left: 50%; /* Adjust this in JavaScript based on sentiment score */
+  transform: translate(-50%, -50%);
   width: 20px;
   height: 20px;
-  border-radius: 50%; /* Circular shape for a modern look */
-  background: #8AB6D6; /* Soft blue to match the text */
-  border: 3px solid #FFF; /* White border to stand out on the gradient */
-  box-shadow: 0 0 8px #8AB6D6; /* Subtle glow effect */
-  transition: left 0.3s ease; /* Smooth transition for the pointer movement */
+  border-radius: 50%;
+  background: #8AB6D6;
+  border: 3px solid #555;
+  box-shadow: 0 0 6px #555;
+  z-index: 2; /* Ensures the pointer is above the score label */
 }
 
 .sentiment-score {
-  color: #8AB6D6; /* Match the score to the text color */
+  position: absolute;
+  top: 100%; /* Align the top of score label with the bottom of the pointer */
+  left: 50%;
+  transform: translate(-50%, 0); /* Center the score horizontally and move it right below the pointer */
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: #2D2D2D;
+  color: #8AB6D6;
   font-size: 0.8rem;
-  align-self: center; /* Vertically align the score */
-  margin-left: 12px; /* Space after the pointer */
-  white-space: nowrap; /* Prevent score from wrapping */
-
+  white-space: nowrap;
+  transition: left 0.3s ease;
 }
+
 
 /* Responsive design adjustments for smaller screens */
 @media (max-width: 768px) {
