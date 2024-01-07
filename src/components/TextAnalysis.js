@@ -76,7 +76,7 @@ const TextAnalysis = ({ text }) => {
         <div className="analysis-result">
           {/* Emotions */}
           <div className="emotion-section">
-            <span className="analysis-title">Emotions:</span>
+            <span className="analysis-title">Emotions</span>
             <div className="emotion-list">
               {analysisResult.emotions.map((emotion, index) => (
                 <div key={index} className="emotion-item">
@@ -90,7 +90,7 @@ const TextAnalysis = ({ text }) => {
 
           {/* Sentiment */}
           <div className="sentiment-section">
-            <span className="analysis-title">Sentiment:</span>
+            <span className="analysis-title">Sentiment</span>
             <div className="sentiment-scale">
               <div className="sentiment-pointer" style={{ left: getSentimentPosition(analysisResult.sentiment.score) }}></div>
             </div>

@@ -16,9 +16,9 @@
   color: #E8E8E8;
   margin-bottom: 2rem; /* Spacing between header and content */
   font-weight: 500; /* Semi-bold for emphasis */
-  font-size: 1rem; /* Appropriately sized headers */
+  font-size: 1rem; /* Smaller sized headers for uniformity */
   text-transform: uppercase; /* Modern look with uppercase letters */
-  letter-spacing: 1px; /* Increased letter spacing for a spacious feel */
+  letter-spacing: 2px; /* Increased letter spacing for a spacious feel */
 }
 
 .emotion-section, .sentiment-section {
@@ -30,17 +30,20 @@
   transition: box-shadow 0.3s ease; /* Smooth transition for shadow effects */
 }
 
-.analysis-title {
-  color: #FFC107;
-  font-size: 1rem;
-  margin-bottom: 10px;
+.analysis-title, .emotion-label, .emotion-score, .sentiment-score {
+  color: #66FCF1; /* Using white for all text for consistency */
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  align-self: center; /* Center the text vertically */
+  margin: 0; /* Reset margins */
 }
 
 .emotion-list {
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-top: 8px;
+  margin-top: 5px;
 }
 
 .emotion-item {
@@ -50,7 +53,7 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 10px; /* Space between elements within the item */
   transition: transform 0.2s ease; /* Subtle scaling effect on hover */
 }
 
@@ -64,11 +67,6 @@
   border-radius: 2px;
 }
 
-.emotion-label, .emotion-score {
-  font-size: 1rem;
-  margin-right: 1px;
-}
-
 .sentiment-section {
   display: flex;
   flex-direction: column; /* Stack the scale and score vertically */
@@ -78,7 +76,7 @@
   position: relative;
   height: 5px; /* Slimmer bar for a sleeker look */
   border-radius: 5px;
-  background: linear-gradient(to right, #ff9c22 0%, #d9ceb6 50%, #2196F3 100%); /* Smooth transition from warm to cool */
+  background: linear-gradient(to right, #ff9c22 0%, #fff 50%, #2196F3 100%); /* Gradient from warm to cool */
   margin: 10px 0; /* Space above and below the scale */
 }
 
@@ -96,10 +94,6 @@
   transition: left 0.3s ease; /* Smooth transition for pointer movement */
 }
 
-.sentiment-score {
-  font-size: 1rem;
-  text-align: center; /* Center-align the score for consistency */
-}
 
 
 /* Responsive design adjustments for smaller screens */
@@ -108,17 +102,13 @@
     padding: 15px;
   }
 
-  .analysis-title {
-    font-size: 0.9rem;
+  .analysis-title, .emotion-label, .emotion-score, .sentiment-score {
+    font-size: 0.7rem; /* Even smaller font size for compact screens */
   }
 
   .emotion-color, .sentiment-pointer {
     width: 14px;
     height: 14px;
-  }
-
-  .emotion-label, .emotion-score, .sentiment-score {
-    font-size: 0.9rem;
   }
 
   .text-analysis-header {
