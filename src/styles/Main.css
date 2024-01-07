@@ -1,7 +1,7 @@
 :root {
   --background-color: #0A0A0A;
-  --background-gradient-center: #1a1a1a;
-  --background-edge: #000000;
+  --background-gradient-center: #121212; /* Darker center for a subtler gradient */
+  --background-edge: #000000; 
   --text-color: #ffffff;
   --font-family: 'Arial', sans-serif;
   --content-spacing: 50px;
@@ -22,7 +22,7 @@
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background: radial-gradient(circle at center, var(--background-gradient-center), var(--background-edge) 70%);
+  background: radial-gradient(circle at center, var(--background-gradient-center) 0%, var(--background-edge) 100%);
   color: var(--text-color);
   font-family: var(--font-family);
 }

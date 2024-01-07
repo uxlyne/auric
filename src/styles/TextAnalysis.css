@@ -2,7 +2,7 @@
 
 .text-analysis-container {
   width: 100%;
-  background: #333; /* Dark background for contrast */
+  background: #2D2D2D; /* A slightly lighter shade for a softer look */
   padding: 20px;
   border-radius: 10px; /* Soft rounded corners */
   text-align: left;
@@ -13,16 +13,16 @@
 }
 
 .text-analysis-header {
-  color: #E8E8E8;
+  color: #CCCCCC; /* Lighter text for a softer appearance */
   margin-bottom: 2rem; /* Spacing between header and content */
   font-weight: 500; /* Semi-bold for emphasis */
   font-size: 1rem; /* Smaller sized headers for uniformity */
-  text-transform: uppercase; /* Modern look with uppercase letters */
-  letter-spacing: 2px; /* Increased letter spacing for a spacious feel */
+  letter-spacing: normal; /* Less spacing for a friendlier feel */
+  text-transform: none; /* Normal casing for a less rigid look */
 }
 
 .emotion-section, .sentiment-section {
-  background: #222; /* Lighter background for sections */
+  background: #3D3D3D; /* A soft dark grey to reduce harshness */
   padding: 15px;
   border-radius: 8px;
   margin-bottom: 2rem;
@@ -31,7 +31,7 @@
 }
 
 .analysis-title, .emotion-label, .emotion-score, .sentiment-score {
-  color: #66FCF1; /* Using white for all text for consistency */
+  color: #8AB6D6; /* Soft blue for a techy yet gentle touch */
   font-size: 0.8rem;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -47,9 +47,9 @@
 }
 
 .emotion-item {
-  background: #444;
+  background: #484848; /* Even lighter for the item bg */
   padding: 8px;
-  border-radius: 4px;
+  border-radius: 20px; /* More rounded for a friendly feel */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
   display: flex;
   align-items: center;
@@ -58,43 +58,54 @@
 }
 
 .emotion-item:hover {
-  transform: scale(1.05); /* Slightly enlarges the hovered item */
+  transform: translateY(-2px); /* Gentle lift effect on hover */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4); /* Slightly deeper shadow for depth */
 }
 
 .emotion-color {
   width: 16px;
   height: 16px;
-  border-radius: 2px;
+  border-radius: 50%; /* Circular shape for a softer appearance */
 }
 
 .sentiment-section {
   display: flex;
   flex-direction: column; /* Stack the scale and score vertically */
+  align-items: flex-start; /* Align items to the start for a balanced look */
 }
 
 .sentiment-scale {
   position: relative;
-  height: 5px; /* Slimmer bar for a sleeker look */
+  width: 100%; /* Full width of the container */
+  height: 10px; /* Height of the sentiment bar */
+  margin: 10px 0; /* Space above and below the bar */
   border-radius: 5px;
-  background: linear-gradient(to right, #ff9c22 0%, #fff 50%, #2196F3 100%); /* Gradient from warm to cool */
-  margin: 10px 0; /* Space above and below the scale */
+  background: linear-gradient(to right, #ff9c22, #FFEBB7 50%, #2196F3); /* Gradient from warm to cool */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */
 }
 
 .sentiment-pointer {
   position: absolute;
-  top: -5px; /* Adjust to center the pointer over the scale */
-  left: 50%; /* Start in the center */
-  transform: translateX(-50%);
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: #000;
-  border: 2px solid #FFF;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-  transition: left 0.3s ease; /* Smooth transition for pointer movement */
+  top: 50%;
+  left: 50%; /* Adjust as needed based on sentiment score */
+  transform: translate(-50%, -50%); /* Center the pointer */
+  width: 20px;
+  height: 20px;
+  border-radius: 50%; /* Circular shape for a modern look */
+  background: #8AB6D6; /* Soft blue to match the text */
+  border: 3px solid #FFF; /* White border to stand out on the gradient */
+  box-shadow: 0 0 8px #8AB6D6; /* Subtle glow effect */
+  transition: left 0.3s ease; /* Smooth transition for the pointer movement */
 }
 
+.sentiment-score {
+  color: #8AB6D6; /* Match the score to the text color */
+  font-size: 0.8rem;
+  align-self: center; /* Vertically align the score */
+  margin-left: 12px; /* Space after the pointer */
+  white-space: nowrap; /* Prevent score from wrapping */
 
+}
 
 /* Responsive design adjustments for smaller screens */
 @media (max-width: 768px) {
