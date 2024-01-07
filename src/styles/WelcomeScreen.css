@@ -87,9 +87,9 @@
 
 .auraTitleContainer {
   position: absolute;
-  top: 43%;
+  top: 40%; /* Adjusted for better vertical alignment */
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -40%);
   z-index: 2;
 }
 
@@ -104,6 +104,7 @@
   z-index: 10; /* Higher than the aura background to 'pop out' */
   transform: translateZ(50px); /* Gives the impression that the text is raised */
   perspective: 500px; /* Perspective for 3D effect */
+  margin-bottom: 2rem;
 }
 
   
@@ -112,15 +113,16 @@
 .slogan-container {
   text-align: center;
   position: absolute;
-  top: 53%;
+  top: 50%; /* Centered vertically */
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 10;
+  padding: 1rem 0; /* Adds padding above and below the slogan for spacing */
 }
 
 .slogan-top {
   color: #FFFFFF;
-  font-size: 1.1rem; /* Slightly smaller for a more understated look */
+  font-size: 1rem; /* Slightly smaller for a more understated look */
   font-weight: 500; /* Semi-bold for a modern appearance */
   margin: 0;
   padding: 0.5rem 0;
@@ -144,8 +146,6 @@
   width: 20%; /* Shorter width for a subtle look */
   opacity: 0.7; /* Slightly transparent for a softer appearance */
 }
-
-
 
 
 /* Button Styles */
@@ -403,5 +403,88 @@
     top: 68%; /* Adjusted button position for mobile and tablet screens */
   }
 }
+
+.emotion-circles {
+  display: flex;
+  justify-content: space-around; /* Space out circles evenly */
+  align-items: center;
+  width: 120px; /* Define a width that allows for better spacing */
+  margin: 0 auto; /* Center the container */
+}
+
+.emotion-circle {
+  width: 15px; /* Keep the circles small for sleekness */
+  height: 15px;
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+  position: relative;
+}
+
+/* Pastel gradient backgrounds */
+.emotion-circle:nth-child(1) {
+  background: linear-gradient(135deg, #B8AED9 30%, #DAC6E8 100%);
+}
+
+.emotion-circle:nth-child(2) {
+  background: linear-gradient(135deg, #88D9E8 30%, #A4F3EB 100%);
+}
+
+.emotion-circle:nth-child(3) {
+  background: linear-gradient(135deg, #FDB4C5 30%, #FEC8D8 100%);
+}
+
+/* Adjust the gap between circles by changing the margin if needed */
+.emotion-circle:not(:last-child) {
+  margin-right: 10px; /* Adds space to the right of each circle except the last */
+}
+
+/* If you want the circles to have the same spacing on both sides, remove the :not(:last-child) selector and set a margin on all sides */
+.emotion-circle {
+  margin: 0 5px; /* 5px on each side for consistent spacing */
+}
+
+/* Glow effect */
+.emotion-circle::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 30px; /* larger than the circle to create a glow around it */
+  height: 30px;
+  background: inherit; /* takes the gradient background */
+  border-radius: 50%;
+  filter: blur(8px); /* creates the glow effect */
+  opacity: 0.5; /* adjust opacity for desired intensity */
+  z-index: -1; /* ensures the glow is under the circle */
+}
+
+/* Hover effect to enlarge and intensify glow */
+.emotion-circle:hover::after {
+  width: 35px;
+  height: 35px;
+  opacity: 0.8; /* stronger glow on hover */
+}
+
+/* Optional: subtle pulsing animation for the glow */
+@keyframes pulse-glow {
+  0%, 100% {
+    width: 30px;
+    height: 30px;
+    opacity: 0.6;
+  }
+  50% {
+    width: 35px;
+    height: 35px;
+    opacity: 0.8;
+  }
+}
+
+.emotion-circle:hover::after {
+  animation: pulse-glow 2s infinite ease-in-out;
+}
+
+
+
 
 

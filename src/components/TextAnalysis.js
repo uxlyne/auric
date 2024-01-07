@@ -67,7 +67,7 @@ const TextAnalysis = ({ text }) => {
 
   return (
     <div className="text-analysis-container">
-      <h2 className="text-analysis-header">Text Analysis</h2>
+      <h2 className="text-analysis-header">Overall Analysis</h2>
       {loading ? (
         <p>Loading analysis...</p>
       ) : error ? (
