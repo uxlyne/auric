@@ -113,7 +113,7 @@
 .slogan-container {
   text-align: center;
   position: absolute;
-  top: 50%; /* Centered vertically */
+  top: 52%; /* Centered vertically */
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 10;
@@ -124,7 +124,8 @@
   color: #FFFFFF;
   font-size: 1rem; /* Slightly smaller for a more understated look */
   font-weight: 500; /* Semi-bold for a modern appearance */
-  margin: 0;
+  margin-top: 2.5rem; /* Top margin */
+  margin-bottom: 0.5rem; /* Bottom margin */
   padding: 0.5rem 0;
   font-family: 'Roboto', 'Arial', sans-serif; /* Roboto or Arial for a sleek look */
 }
@@ -132,20 +133,23 @@
 .slogan-bottom {
   color: #FFFFFF;
   font-size: 0.9rem; /* Slightly smaller for subtlety */
-  margin: 0;
+  margin-top: 0.5rem; /* Top margin */
+  margin-bottom: 1rem; /* Bottom margin */
   padding: 0.5rem 0;
   font-family: 'Roboto', 'Arial', sans-serif; /* Consistent font family */
   font-weight: 400; /* Normal font weight for simplicity */
 }
 
+
 .slogan-separator {
   border: none;
   height: 1px;
   background-color: #FFFFFF;
-  margin: 0.5rem auto;
+  margin: 1rem auto; /* Top and bottom margin of 1rem, auto on left and right to center */
   width: 20%; /* Shorter width for a subtle look */
   opacity: 0.7; /* Slightly transparent for a softer appearance */
 }
+
 
 
 /* Button Styles */
@@ -375,16 +379,23 @@
 
 /* Media Query for Mobile and Tablet Views */
 @media (max-width: 768px) {
+  .eclipse {
+    width: 82vw; /* 80% of the viewport width */
+    height: 82vw; /* 80% of the viewport width to maintain aspect ratio */
+    max-width: 600px; /* Optional: if you want to limit the size */
+    max-height: 600px; /* Optional: if you want to limit the size */
+  }
+
   .promo-words {
     display: none; /* Hide promo text on smaller screens */
   }
 
   .auraTitleContainer {
-    top: 40%; /* Adjusted for mobile screens to lower the title */
+    top: 42%; /* Adjusted for mobile screens to lower the title */
   }
 
   .auraTitle {
-    font-size: 4rem; /* Reduced font size for mobile screens */
+    font-size: 5rem; /* Reduced font size for mobile screens */
     white-space: nowrap; /* Prevent title text from wrapping onto a new line */
   }
 
@@ -394,13 +405,13 @@
 
   .slogan-top,
   .slogan-bottom {
-    font-size: 1rem; /* Reduced font size for mobile screens */
+    font-size: 0.8rem; /* Reduced font size for mobile screens */
     white-space: nowrap; /* Prevent slogan text from wrapping onto a new line */
   }
 
   .startButton {
     padding: 0.5rem 1rem; /* Reduced padding for mobile and tablet screens */
-    top: 68%; /* Adjusted button position for mobile and tablet screens */
+    top: 65%; /* Adjusted button position for mobile and tablet screens */
   }
 }
 

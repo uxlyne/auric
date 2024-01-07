@@ -40,7 +40,7 @@ const WelcomePage = () => {
       {/* Header */}
       <div>
         <div className="promo-words promo-top-left">Aura Emotional Awareness</div>
-        <div className="promo-words promo-top-right">Tools for Insight</div>
+        <div className="promo-words promo-top-right">Mental Health Tools</div>
         <div className="promo-words promo-bottom-right">Created By Amy Lyne</div>
       </div>
 
