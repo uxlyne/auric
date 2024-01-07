@@ -25,17 +25,17 @@
   background: radial-gradient(circle at center, var(--background-gradient-center), var(--background-edge) 70%);
   color: var(--text-color);
   font-family: var(--font-family);
-  overflow: hidden;
 }
 
 .main-container {
-  flex: 1;
+  flex-grow: 1; /* Changed from flex: 1 to ensure it grows to available space */
   display: flex;
   justify-content: center;
   align-items: center;
   padding: var(--content-spacing);
   position: relative;
-  background: radial-gradient(circle at center, var(--background-gradient-center) 35%, var(--background-edge) 100%);
+  overflow: hidden;
+  /* Removed the background property to avoid conflict with the app's background */
 }
 
 .header, .footer {
@@ -98,23 +98,32 @@ button:hover {
 @media (max-width: 768px) {
   .content {
     flex-direction: column;
-    width: 100%;
-    align-items: center; /* Aligns the flex children (panels) in the center */
+    align-items: center; /* Centers the child panels */
   }
 
-  .left-panel, .right-panel {
-    margin: 0;
-    width: 90%; /* Sets a max width to the panel to avoid edge-to-edge stretching */
-    max-width: 500px; /* Optionally, set a max-width for larger screens within the breakpoint */
-    flex-basis: auto; /* Resets the flex basis to accommodate content size */
-    justify-content: center; /* Centers the content vertically in the flex direction */
-    align-items: center; /* Centers the content horizontally in the flex direction */
+  .left-panel,
+  .right-panel {
+    width: 90%; /* Sets a maximum width */
+    max-width: 500px; /* Provides a maximum width for larger devices within the breakpoint */
+    margin: 0 auto; /* Centers the panels and removes any default margin */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Aligns items horizontally within the panel */
   }
 
-  .text-input, .text-analysis {
-    margin: 0 auto; /* Additional centering for input and analysis components */
-    display: block; /* Ensures that these elements are treated as block-level for width calculations */
+  .text-input-container,
+  .text-analysis-container {
+    width: 100%; /* Takes up 100% of the parent container's width */
+    margin: 20px 0; /* Adds vertical spacing */
+  }
+
+  .input-text,
+  .analyze-button,
+  .text-analysis {
+    width: 100%; /* Elements take up the full width of their container */
+    margin: 10px 0; /* Adds spacing between elements */
   }
 }
+
 
 
