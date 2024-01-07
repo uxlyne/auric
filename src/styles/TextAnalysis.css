@@ -9,97 +9,98 @@
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5); /* Deeper shadow for a floating effect */
   color: #FFF; /* White text for readability */
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Modern font */
+  transition: background-color 0.3s ease; /* Smooth transition for color changes */
 }
 
 .text-analysis-header {
   color: #E8E8E8;
-  margin-bottom: 1rem; /* Increased bottom margin for spacing */
+  margin-bottom: 2rem; /* Spacing between header and content */
   font-weight: 500; /* Semi-bold for emphasis */
-  font-size: 1.25rem; /* Slightly larger font size for headers */
+  font-size: 1rem; /* Appropriately sized headers */
+  text-transform: uppercase; /* Modern look with uppercase letters */
+  letter-spacing: 1px; /* Increased letter spacing for a spacious feel */
 }
 
-.emotion-section {
-  background: #222; /* Slightly lighter than container bg */
+.emotion-section, .sentiment-section {
+  background: #222; /* Lighter background for sections */
   padding: 15px;
-  border-radius: 8px; /* Smooth rounded corners */
-  margin-bottom: 1rem; /* Space between sections */
-  box-shadow: inset 0 4px 6px rgba(0, 0, 0, 0.1); /* Inner shadow for depth */
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  box-shadow: inset 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease; /* Smooth transition for shadow effects */
 }
 
 .analysis-title {
-  color: #FFC107; /* Gold color for titles to pop */
-  font-size: 1rem; /* Simplified and smaller font size */
-  margin-bottom: 20px; /* Increased space before the list starts */
+  color: #FFC107;
+  font-size: 1rem;
+  margin-bottom: 10px;
 }
 
 .emotion-list {
   display: flex;
   align-items: center;
-  gap: 10px; /* Space between items */
-  margin-top: 5px;
+  gap: 10px;
+  margin-top: 8px;
 }
 
 .emotion-item {
-  background: #444; /* Even lighter for the item bg */
+  background: #444;
   padding: 8px;
-  border-radius: 4px; /* Slight rounding on the corners */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Soft shadow for floating effect */
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
   display: flex;
   align-items: center;
-  gap: 5px; /* Space between elements within the item */
+  gap: 5px;
+  transition: transform 0.2s ease; /* Subtle scaling effect on hover */
 }
 
-
 .emotion-item:hover {
-  background: #555; /* Darken background on hover */
+  transform: scale(1.05); /* Slightly enlarges the hovered item */
 }
 
 .emotion-color {
-  width: 16px; /* Size down the square a bit */
+  width: 16px;
   height: 16px;
-  border-radius: 2px; /* Slightly rounded corners on the square */
-  margin-right: 8px; /* Space after the square */
+  border-radius: 2px;
 }
 
 .emotion-label, .emotion-score {
   font-size: 1rem;
+  margin-right: 1px;
 }
 
 .sentiment-section {
-  background: #222; /* Slightly lighter than container bg */
-  padding: 15px;
-  border-radius: 8px; /* Smooth rounded corners */
-  margin-bottom: 2rem; /* Increased bottom margin for spacing */
-  box-shadow: inset 0 4px 6px rgba(0, 0, 0, 0.1); /* Inner shadow for depth */
+  display: flex;
+  flex-direction: column; /* Stack the scale and score vertically */
 }
 
 .sentiment-scale {
   position: relative;
   height: 5px; /* Slimmer bar for a sleeker look */
   border-radius: 5px;
-  background: linear-gradient(to right, #ff9c22, #feddab 50%, #2196F3); /* Gradient from warm orange to cool blue with white in the center */
-  margin-top: 10px; /* Space above the scale */
-  margin-bottom: 5px; /* Space below the scale for the score */
+  background: linear-gradient(to right, #ff9c22 0%, #d9ceb6 50%, #2196F3 100%); /* Smooth transition from warm to cool */
+  margin: 10px 0; /* Space above and below the scale */
 }
 
 .sentiment-pointer {
   position: absolute;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 12px; /* Smaller pointer for a finer indicator */
+  top: -5px; /* Adjust to center the pointer over the scale */
+  left: 50%; /* Start in the center */
+  transform: translateX(-50%);
+  width: 12px;
   height: 12px;
   border-radius: 50%;
   background: #000;
   border: 2px solid #FFF;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); /* Adding shadow for better visibility */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  transition: left 0.3s ease; /* Smooth transition for pointer movement */
 }
 
 .sentiment-score {
-  color: #FFF;
   font-size: 1rem;
-  text-align: right;
-  margin-top: 8px; /* Space between the scale and the score */
+  text-align: center; /* Center-align the score for consistency */
 }
+
 
 /* Responsive design adjustments for smaller screens */
 @media (max-width: 768px) {
