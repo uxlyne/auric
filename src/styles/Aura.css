@@ -38,13 +38,5 @@
     animation: rotate 10s linear infinite;
     filter: blur(40px);
   }
-  
-  @keyframes rotate {
-    0% {
-      transform: translate(-50%, -50%) rotate(0deg);
-    }
-    100% {
-      transform: translate(-50%, -50%) rotate(360deg);
-    }
-  }
+
   

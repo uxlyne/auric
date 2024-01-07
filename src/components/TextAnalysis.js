@@ -3,11 +3,23 @@ import '../styles/TextAnalysis.css'; // Import the CSS file
 
 const TextAnalysis = ({ text }) => {
   const [analysisResult, setAnalysisResult] = useState({
-    documentTone: { tone: '', score: 0, color: '' },
-    sentiment: { label: '', score: 0 },
+    emotions: [
+      { emotion: 'Joy', score: 0.68 }, // Example emotion
+      { emotion: 'Sadness', score: 0.32 } // Another example emotion
+    ],
+    sentiment: { label: 'neutral', score: 0 }, // Default sentiment
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+
+  // Function to process emotions data
+  const processEmotions = (emotionsData) => {
+    let sortedEmotions = Object.keys(emotionsData)
+      .map(key => ({ emotion: key, score: emotionsData[key] }))
+      .sort((a, b) => b.score - a.score);
+
+    return sortedEmotions.slice(0, 2);
+  };
 
   useEffect(() => {
     const analyzeTextWithWatson = async (text) => {
@@ -16,38 +28,22 @@ const TextAnalysis = ({ text }) => {
           setLoading(true);
           setError(null);
 
-          // Perform your API request here
-          const response = await fetch('/api/analyze', { // Use the API endpoint you set up in your server.js
+          const response = await fetch('/api/analyze', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
             },
-            body: JSON.stringify({
-              text: text,
-              features: {
-                sentiment: {},
-                categories: {},
-                concepts: {},
-                entities: {},
-                keywords: {},
-              },
-            }),
+            body: JSON.stringify({ text: text, features: { sentiment: {}, emotions: {} } }),
           });
 
           if (!response.ok) {
             throw new Error('Failed to fetch data');
           }
 
-          // Parse the API response
           const data = await response.json();
 
-          // Update the analysis result state
           setAnalysisResult({
-            documentTone: {
-              tone: 'Joy', // Example tone
-              score: 0.85,
-              color: '#FFD700', // Example color for Joy
-            },
+            emotions: processEmotions(data.emotion.document.emotion),
             sentiment: {
               label: data.sentiment.document.label,
               score: data.sentiment.document.score,
@@ -64,6 +60,11 @@ const TextAnalysis = ({ text }) => {
     analyzeTextWithWatson(text);
   }, [text]);
 
+  // Helper function to calculate the position of the sentiment pointer
+  const getSentimentPosition = (score) => {
+    return `${((score + 1) / 2) * 100}%`;
+  };
+
   return (
     <div className="text-analysis-container">
       <h2 className="text-analysis-header">Text Analysis</h2>
@@ -73,30 +74,27 @@ const TextAnalysis = ({ text }) => {
         <p className="error-message">{error}</p>
       ) : (
         <div className="analysis-result">
-          {/* Document Tone */}
-          <div className="analysis-item">
-            <span className="analysis-title">Tone:</span>
-            <span className="analysis-score">{analysisResult.documentTone.tone}</span>
-            <div
-              className="tone-indicator"
-              style={{ backgroundColor: analysisResult.documentTone.color }}
-            ></div>
-            <span className="analysis-title">Score:</span>
-            <span className="analysis-score">{analysisResult.documentTone.score}</span>
+          {/* Emotions */}
+          <div className="emotion-section">
+            <span className="analysis-title">Emotions:</span>
+            <div className="emotion-list">
+              {analysisResult.emotions.map((emotion, index) => (
+                <div key={index} className="emotion-item">
+                  <div className="emotion-color" style={{ backgroundColor: getColorForEmotion(emotion.emotion) }}></div>
+                  <span className="emotion-label">{emotion.emotion}</span>
+                  <span className="emotion-score">{emotion.score.toFixed(2)}</span>
+                </div>
+              ))}
+            </div>
           </div>
 
           {/* Sentiment */}
-          <div className="analysis-item">
+          <div className="sentiment-section">
             <span className="analysis-title">Sentiment:</span>
-            <span className="analysis-score">{analysisResult.sentiment.label}</span>
-            <div
-              className="sentiment-indicator"
-              style={{
-                backgroundColor: `rgba(255, ${255 * (1 - analysisResult.sentiment.score)}, 0, 1)`,
-              }}
-            ></div>
-            <span className="analysis-title">Score:</span>
-            <span className="analysis-score">{analysisResult.sentiment.score}</span>
+            <div className="sentiment-scale">
+              <div className="sentiment-pointer" style={{ left: getSentimentPosition(analysisResult.sentiment.score) }}></div>
+            </div>
+            <span className="sentiment-score">{analysisResult.sentiment.score.toFixed(2)}</span>
           </div>
         </div>
       )}
@@ -104,7 +102,24 @@ const TextAnalysis = ({ text }) => {
   );
 };
 
+// Helper function to get color based on the emotion
+const getColorForEmotion = (emotion) => {
+  const colors = {
+    Joy: '#FFD700',
+    Sadness: '#1E90FF',
+    Anger: '#FF6347',
+    Fear: '#A52A2A',
+    Disgust: '#008000',
+  };
+
+  return colors[emotion] || '#000000'; // Default to black if emotion not found
+};
+
 export default TextAnalysis;
+
+
+
+
 
 
 

@@ -2,57 +2,125 @@
 
 .text-analysis-container {
   width: 100%;
-  background: rgba(255, 255, 255, 0.05); /* Slight transparency for depth */
+  background: #333; /* Dark background for contrast */
   padding: 20px;
   border-radius: 10px; /* Soft rounded corners */
   text-align: left;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Deeper shadow for a floating effect */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5); /* Deeper shadow for a floating effect */
+  color: #FFF; /* White text for readability */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Modern font */
 }
 
 .text-analysis-header {
   color: #E8E8E8;
-  margin-bottom: 1rem;
+  margin-bottom: 1rem; /* Increased bottom margin for spacing */
   font-weight: 500; /* Semi-bold for emphasis */
   font-size: 1.25rem; /* Slightly larger font size for headers */
 }
 
-.analysis-item {
-  background: rgba(0, 0, 0, 0.2); /* Dark background for each item */
-  border-left: 4px solid #FFC107; /* Accent color to signify importance */
-  padding: 10px;
-  border-radius: 5px; /* Consistent rounded corners */
-  margin-bottom: 1rem; /* Space between analysis items */
+.emotion-section {
+  background: #222; /* Slightly lighter than container bg */
+  padding: 15px;
+  border-radius: 8px; /* Smooth rounded corners */
+  margin-bottom: 1rem; /* Space between sections */
+  box-shadow: inset 0 4px 6px rgba(0, 0, 0, 0.1); /* Inner shadow for depth */
 }
 
 .analysis-title {
-  color: #FFC107; /* Use of accent color for titles */
+  color: #FFC107; /* Gold color for titles to pop */
+  font-size: 1rem; /* Simplified and smaller font size */
+  margin-bottom: 20px; /* Increased space before the list starts */
+}
+
+.emotion-list {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Space between items */
+  margin-top: 5px;
+}
+
+.emotion-item {
+  background: #444; /* Even lighter for the item bg */
+  padding: 8px;
+  border-radius: 4px; /* Slight rounding on the corners */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Soft shadow for floating effect */
+  display: flex;
+  align-items: center;
+  gap: 5px; /* Space between elements within the item */
+}
+
+
+.emotion-item:hover {
+  background: #555; /* Darken background on hover */
+}
+
+.emotion-color {
+  width: 16px; /* Size down the square a bit */
+  height: 16px;
+  border-radius: 2px; /* Slightly rounded corners on the square */
+  margin-right: 8px; /* Space after the square */
+}
+
+.emotion-label, .emotion-score {
   font-size: 1rem;
-  margin: 0;
-  padding-bottom: 5px; /* Small padding for visual separation */
 }
 
-.analysis-score {
-  color: #E8E8E8; /* Light text for contrast against dark background */
-  font-weight: 300; /* Lighter font-weight for a modern aesthetic */
-  font-size: 1.5rem; /* Larger font size for impact */
-  margin: 0;
+.sentiment-section {
+  background: #222; /* Slightly lighter than container bg */
+  padding: 15px;
+  border-radius: 8px; /* Smooth rounded corners */
+  margin-bottom: 2rem; /* Increased bottom margin for spacing */
+  box-shadow: inset 0 4px 6px rgba(0, 0, 0, 0.1); /* Inner shadow for depth */
 }
 
-/* Hover effects for interactivity */
-.analysis-item:hover {
-  background: rgba(0, 0, 0, 0.3); /* Slightly lighten on hover */
-  cursor: pointer; /* Changes the cursor to suggest interactivity */
+.sentiment-scale {
+  position: relative;
+  height: 5px; /* Slimmer bar for a sleeker look */
+  border-radius: 5px;
+  background: linear-gradient(to right, #ff9c22, #feddab 50%, #2196F3); /* Gradient from warm orange to cool blue with white in the center */
+  margin-top: 10px; /* Space above the scale */
+  margin-bottom: 5px; /* Space below the scale for the score */
+}
+
+.sentiment-pointer {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 12px; /* Smaller pointer for a finer indicator */
+  height: 12px;
+  border-radius: 50%;
+  background: #000;
+  border: 2px solid #FFF;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); /* Adding shadow for better visibility */
+}
+
+.sentiment-score {
+  color: #FFF;
+  font-size: 1rem;
+  text-align: right;
+  margin-top: 8px; /* Space between the scale and the score */
 }
 
 /* Responsive design adjustments for smaller screens */
 @media (max-width: 768px) {
-  .text-analysis-container,
-  .textarea {
-    padding: 15px; /* Smaller padding on smaller screens */
+  .text-analysis-container {
+    padding: 15px;
   }
 
-  .analysis-title,
-  .analysis-score {
-    font-size: 1rem; /* Adjust font sizes for a balanced look on smaller screens */
+  .analysis-title {
+    font-size: 0.9rem;
+  }
+
+  .emotion-color, .sentiment-pointer {
+    width: 14px;
+    height: 14px;
+  }
+
+  .emotion-label, .emotion-score, .sentiment-score {
+    font-size: 0.9rem;
+  }
+
+  .text-analysis-header {
+    margin-bottom: 1.5rem; /* Adjust spacing on smaller screens */
   }
 }
