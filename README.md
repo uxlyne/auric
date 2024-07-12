@@ -2,7 +2,7 @@
 Auric Emotional Awareness
 
 # About
-The Auric Project offers an interactive UI model demonstrating how emotions might visually alter human auras. This educational tool allows users to input text and adjust visual aura parameters such as brightness, saturation, and color to see potential emotional effects. Note that this model is for visualization purposes only and does not perform real emotional analysis.
+The Auric Project provides a conceptual UI that illustrates how emotions could hypothetically affect visual representations, modeled as 'auras'. Users can input text and adjust parameters like brightness, saturation, and color, exploring how these changes might correspond to emotional expressions. This interface is a visual tool for demonstration purposes only.
 
 # Getting Started with Create React App
 
