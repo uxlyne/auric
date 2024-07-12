@@ -1,4 +1,4 @@
-# auric
+# Auric
 Auric Emotional Awareness
 
 # About
